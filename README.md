@@ -5,8 +5,8 @@
 [![Gmail](https://img.shields.io/badge/-Gmail-c14438?style=flat&logo=Gmail&logoColor=white)](mailto:emanueltrandafir1993@gmail.com) 
 [![X](https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2Ftrandafire1)](https://x.com/trandafire1)
 
-
-I value **simplicity and intentionality** over blindly applying patterns and abstractions. I care deeply about the **design and testability** of the software I create. I also value **communication and collaboration** and enjoy sharing my knowledge through open-source contributions and technical articles.
+ 
+I value $\color{Aquamarine}{simplicity\ and\ intentionality}$ over blindly applying patterns and abstractions. I care deeply about the $\color{Aquamarine}{design\ and\ testability}$ of the software I create. I also value $\color{Aquamarine}{communication\ and\ collaboration}$ and enjoy sharing my knowledge through open-source contributions and technical articles.
 
 
 <details>
@@ -29,5 +29,3 @@ In this article, I've tried to find the right balance between theory and practic
 - [Three Nerdy Developer Jokes I Told My Fiancee](https://levelup.gitconnected.com/three-nerdy-developer-jokes-i-told-my-fiancee-she-was-not-impressed-f719ae8bb94d?source=friends_link&sk=039e555b2f8b13d68fe4444c92db1aec) - A glimpse into the nerdy jokes my wife endures daily.
 
 </details>
-
-
