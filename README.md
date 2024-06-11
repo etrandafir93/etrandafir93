@@ -5,7 +5,7 @@
 [![X](https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2Ftrandafire1)](https://x.com/trandafire1)
 
  
-I value $\color{Aquamarine}{simplicity\ and\ intentionality}$ over blindly applying patterns and abstractions. I care deeply about the $\color{Aquamarine}{design\ and\ testability}$ of the software I create. I also value $\color{Aquamarine}{communication\ and\ collaboration}$ and enjoy sharing my knowledge through open-source contributions and technical articles.
+I value **simplicity and intentionality** over blindly applying patterns and abstractions. I care deeply about the **design and testability** of the software I create. I also value **communication and collaboration** and enjoy sharing my knowledge through open-source contributions and technical articles.
 
 
 <details>
