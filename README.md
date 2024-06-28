@@ -1,8 +1,9 @@
 ## Hey, I'm Emanuel 👋 a Software Craftsman from Romania 🇷🇴.
-[![cv](https://img.shields.io/badge/resume%20-%20green)](https://github.com/etrandafir93/etrandafir93/blob/main/Emanuel%20Tranafir%20Resume%203.0.pdf)
-[![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/emanueltrandafir/)
-[![Gmail](https://img.shields.io/badge/-Gmail-c14438?style=flat&logo=Gmail&logoColor=white)](mailto:emanueltrandafir1993@gmail.com) 
-[![X](https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2Ftrandafire1)](https://x.com/trandafire1)
+
+[![Gmail](https://img.shields.io/badge/Gmail%20-%20red)](mailto:emanueltrandafir1993@gmail.com) 
+[![cv](https://img.shields.io/badge/resume%20-%20orange)](https://github.com/etrandafir93/etrandafir93/blob/main/Emanuel%20Tranafir%20Resume%203.0.pdf)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn%20-%20blue)](https://www.linkedin.com/in/emanueltrandafir/)
+[![Baeldung](https://img.shields.io/badge/articles%20-%20green)](https://www.baeldung.com/author/emanueltrandafir)
 
  
 I value **simplicity and intentionality** over blindly applying patterns and abstractions. I care deeply about the **design and testability** of the software I create. I also value **communication and collaboration** and enjoy sharing my knowledge through open-source contributions and technical articles.
