@@ -12,6 +12,7 @@ I value **simplicity and intentionality** over blindly applying patterns and abs
 <summary>Check out some of my articles.</summary>
 
 ## 🚀 Design
+- [Vertical Slice Architecture](https://www.baeldung.com/java-vertical-slice-architecture) - Let's organize the codebase by business capabilities rather than technical concerns. This approach slices the application vertically and challenges the traditional, layered, approach.
 - [Monads In Java](https://www.baeldung.com/java-monads) - Functional programming paradigms and their abstract algebra terms can be overwhelming... But, getting a handle on "monads" will help us better grasp modern Java APIs.
 In this article, I've tried to find the right balance between theory and practical Java examples.
 - [Less Mocks, More Functions](https://levelup.gitconnected.com/less-mocks-more-functions-860aac67d4a7?source=friends_link&sk=b5ab72d0610c23514f0ee235e612a400) - Using the Functional Programming paradigm to push the impurities outside of our domain, and increase its testability.
