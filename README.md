@@ -1,9 +1,8 @@
 ## Hey, I'm Emanuel 👋 a Software Craftsman from Romania 🇷🇴.
 
-[![Gmail](https://img.shields.io/badge/Gmail%20-%20red)](mailto:emanueltrandafir1993@gmail.com) 
-[![cv](https://img.shields.io/badge/resume%20-%20orange)](https://github.com/etrandafir93/etrandafir93/blob/main/Emanuel%20Tranafir%20Resume%203.0.pdf)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn%20-%20blue)](https://www.linkedin.com/in/emanueltrandafir/)
-[![Baeldung](https://img.shields.io/badge/articles%20-%20green)](https://www.baeldung.com/author/emanueltrandafir)
+[![cv](https://img.shields.io/badge/Resume%20-%20orange)](https://github.com/etrandafir93/etrandafir93/blob/main/Emanuel%20Tranafir%20Resume%203.0.pdf)
+[![Gmail](https://img.shields.io/badge/Gmail%20-%20red)](mailto:emanueltrandafir1993@gmail.com) 
 
  
 I value **simplicity and intentionality** over blindly applying patterns and abstractions. I care deeply about the **design and testability** of the software I create. I also value **communication and collaboration** and enjoy sharing my knowledge through open-source contributions and technical articles.
@@ -28,5 +27,7 @@ In this article, I've tried to find the right balance between theory and practic
 
 ## 😆 Day to Day life
 - [Three Nerdy Developer Jokes I Told My Fiancee](https://levelup.gitconnected.com/three-nerdy-developer-jokes-i-told-my-fiancee-she-was-not-impressed-f719ae8bb94d?source=friends_link&sk=039e555b2f8b13d68fe4444c92db1aec) - A glimpse into the nerdy jokes my wife endures daily.
+
+And this is just a brief selection, [(see all articles here)](https://www.baeldung.com/author/emanueltrandafir).
 
 </details>
