@@ -20,6 +20,7 @@ In this article, I've tried to find the right balance between theory and practic
 - [Anemic vs Rich Domain Objects](https://www.baeldung.com/java-anemic-vs-rich-domain-objects) - Not everything is about FP! In this article, we'll question "getters" and "setters", we'll empower our objects by encapsulating business logic and enriching our domain.
 
 ## 🔍 Testing
+- [Model Based Testing with Testcontainers and Jqwik](https://www.docker.com/blog/model-based-testing-testcontainers-jqwik/) - Running our apps through a marathon of random scenarios to see which version collapses first.
 - [The Anatomy Of Mocks In Unit Testing](https://levelup.gitconnected.com/the-anatomy-of-mocks-in-unit-testing-3e6a78b2b5d3?source=friends_link&sk=702d3eb26b853a0fad7b54d0f78c2894) - In the article, we'll learn about "Fakes", "Stubs", "Mocks", and "Spies"... without using a mocking library.
 - [Spring Boot Support for Testcontainers](https://www.baeldung.com/spring-boot-built-in-testcontainers) - A leap towards reliable testing.  
 - [Testcontainers Desktop](https://www.baeldung.com/testcontainers-desktop) - Probably the best way of debugging your Testcontainers.
