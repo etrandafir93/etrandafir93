@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write  # Allow GitHub Actions to push to gh-pages
   pages: write
   id-token: write
 
@@ -17,6 +17,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # Disable default token to use a new one
+
+      - name: Setup Git Credentials
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -26,8 +33,9 @@ jobs:
       - name: Install MkDocs and dependencies
         run: pip install mkdocs mkdocs-material
 
-      - name: Build and Deploy
+      - name: Deploy MkDocs to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd site
-          mkdocs build
-          mkdocs gh-deploy --force
+          mkdocs gh-deploy --force --remote-branch gh-pages
