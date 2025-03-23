@@ -1,11 +1,12 @@
-version: '3'
+version: '3.8'
 
 services:
   mkdocs:
-    image: squidfunk/mkdocs-material
-    container_name: mkdocs-site
-    ports:
-      - "8000:8000"
+    image: python:3.10
+    working_dir: /docs
     volumes:
       - .:/docs
-    command: serve -a 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    command: >
+      /bin/bash -c "pip install mkdocs mkdocs-dracula-theme && mkdocs serve -a 0.0.0.0:8000"

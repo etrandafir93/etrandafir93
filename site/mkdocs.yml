@@ -1,6 +1,6 @@
 site_name: My MkDocs Site
 theme:
-  name: material
+  name: dracula
 nav:
   - Home: index.md
   - About: about.md
