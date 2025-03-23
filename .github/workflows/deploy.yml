@@ -5,9 +5,15 @@ on:
     branches:
       - main  # Adjust if your default branch is different
 
+permissions:
+  contents: write  # Allow writing to gh-pages branch
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
 
     steps:
       - name: Checkout repository
