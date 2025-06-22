@@ -1,7 +1,7 @@
 ## Hey, I'm Emanuel 👋 a Software Craftsman from Romania 🇷🇴.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn%20-%20blue)](https://www.linkedin.com/in/emanueltrandafir/)
-[![cv](https://img.shields.io/badge/Resume%20-%20orange)](https://github.com/etrandafir93/etrandafir93/blob/main/Emanuel%20Tranafir%20Resume%203.0.pdf)
+[![cv](https://img.shields.io/badge/Resume%20-%20orange)](https://github.com/etrandafir93/etrandafir93/blob/main/Emanuel%20Tranafir%20Resume%204.2.pdf)
 [![Gmail](https://img.shields.io/badge/Gmail%20-%20red)](mailto:emanueltrandafir1993@gmail.com) 
 
  
