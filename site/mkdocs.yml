@@ -2,6 +2,7 @@ site_name: Emanuel Trandafir
 theme:
   name: dracula
   logo: img/me.png
+  favicon: img/me.png
 extra_css:
   - stylesheets/extra.css
 nav:
