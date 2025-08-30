@@ -106,6 +106,7 @@ Therefore, we can re-write our test as follows:
 ```
 
 And it reads like this:
+
 - we start with the number 1, 
 - then we add 2 to it, 
 - then we compare the result with 3, 
