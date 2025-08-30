@@ -1,6 +1,9 @@
-site_name: My MkDocs Site
+site_name: Emanuel Trandafir
 theme:
   name: dracula
+  logo: img/me.png
+extra_css:
+  - stylesheets/extra.css
 nav:
-  - Home: index.md
-  - About: about.md
+  - "--- About Me ---": index.md
+  - "Clojure Threading for Dummy Java Devs (such as myself)": blog/clojure-threading.md
