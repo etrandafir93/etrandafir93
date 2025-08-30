@@ -188,7 +188,7 @@ making debugging easier since we can inspect the output at any stage.
 Additionally, pipeline steps can be easily reordered, combined, or parallelized 
 without affecting other parts of the system.
 
-## A Threading Operator in Java?
+## What About Java?
 
 <details>
 <summary>What does this remind you of from Java?</summary>
