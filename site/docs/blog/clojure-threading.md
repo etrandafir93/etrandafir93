@@ -84,7 +84,7 @@ Now let's write a unit test for our `add` function:
 ## The Threading Macros
 
 Look at our test: as simple as it is, it already has quite a few nested function calls.
-If we read it from left to right, we can see that we're:
+If we read it from right to left, we can see that we're:
 
 - adding 1 and 2
 - comparing the result with 3
@@ -145,11 +145,11 @@ the result of each step as the last argument of the next function:
   (->> file
     gpx/read-file-as-string
     gpx/xml-to-trkpts
-    (heatmap/normalize-trkpts)
+    heatmap/normalize-trkpts
     heatmap/heatmap-matrix
     heatmap/map-to-rgb
     heatmap/map-to-json
-    (html/generate-html)
+    html/generate-html
     (html/save-file 
       (str "out/" (UUID/randomUUID) ".html"))))
 ```
@@ -170,12 +170,12 @@ with a cadence of less than 10 steps per minute
     gpx/read-file-as-string
     gpx/xml-to-trkpts
     (filter (fn[pt] (> (:cadence pt) 10))) ;; <- filter by cadence
-    (heatmap/normalize-trkpts-precision)
+    heatmap/normalize-trkpts-precision
     (heatmap/rotate-points -55) ;; <- rotate counter-clockwise by 55 degrees
     heatmap/heatmap-matrix
     heatmap/map-to-rgb
     heatmap/map-to-json
-    (html/generate-html)
+    html/generate-html
     (html/save-file 
        (str "out/" (UUID/randomUUID) ".html"))))
 ```
