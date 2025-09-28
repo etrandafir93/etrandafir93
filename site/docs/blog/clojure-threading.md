@@ -1,6 +1,8 @@
 # Clojure Threading for Dummy Java Devs (such as myself)
 
-*Published: August 30, 2024*
+*Published: August 30, 2025*
+
+`#clojure` `#java` `#functional programming`
 
 Recently, I've been playing around with Clojure. 
 I wanted to take advantage of the AI tools available to explore a new language...

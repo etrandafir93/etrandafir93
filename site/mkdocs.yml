@@ -1,10 +1,11 @@
 site_name: Emanuel Trandafir
 theme:
   name: dracula
-  logo: img/me.png
-  favicon: img/me.png
+  logo: img/me.jpeg
+  favicon: img/me.jpeg
 extra_css:
   - stylesheets/extra.css
 nav:
   - "--- About Me ---": index.md
   - "Clojure Threading for Dummy Java Devs (such as myself)": blog/clojure-threading.md
+  - "Less Mocks, More Functions!": blog/less-mocks-more-functions.md

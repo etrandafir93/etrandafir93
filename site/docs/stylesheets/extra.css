@@ -1,6 +1,7 @@
 .md-header__button.md-logo img,
 .md-nav__button.md-logo img,
-img[src*="me.png"] {
-    border-radius: 50%;
-    object-fit: cover;
+img[src*="me.jpeg"] {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    filter: grayscale(1) sepia(0.2) hue-rotate(180deg) !important;
 }
