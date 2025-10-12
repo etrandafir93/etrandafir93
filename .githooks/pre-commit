@@ -1,0 +1,128 @@
+#!/bin/bash
+# Pre-commit hook to review blog articles with Claude before committing
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}🔍 Checking for blog article changes...${NC}"
+
+# Get list of staged .md files in site/docs/blog/
+STAGED_BLOG_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '^site/docs/blog/.*\.md$' || true)
+
+if [ -z "$STAGED_BLOG_FILES" ]; then
+    echo -e "${GREEN}✓ No blog articles to review${NC}"
+    exit 0
+fi
+
+echo -e "${YELLOW}📝 Found modified blog articles:${NC}"
+echo "$STAGED_BLOG_FILES" | while read -r file; do
+    echo -e "  - ${file}"
+done
+echo ""
+
+# Generate review prompt for each file
+REVIEW_PROMPT_FILE=$(mktemp)
+
+cat > "$REVIEW_PROMPT_FILE" << 'EOF'
+I'm about to commit changes to my technical blog article(s). Please review the following article(s) for:
+
+1. **Technical Accuracy**: Are the code examples correct? Are the concepts explained accurately?
+2. **Clarity & Readability**: Is the content easy to understand? Are explanations clear?
+3. **Structure & Flow**: Does the article have a logical flow? Are sections well-organized?
+4. **Code Quality**: If there are code examples:
+   - Are they syntactically correct?
+   - Do they follow best practices?
+   - Are they well-commented where needed?
+5. **Consistency**: Does the style match my other articles (focus on simplicity, intentionality, design, testability)?
+6. **Grammar & Spelling**: Any language issues?
+
+Please provide:
+- An overall assessment (2-3 sentences)
+- Specific feedback organized by category
+- Suggestions for improvement
+
+Be constructive and specific. Focus on improvements that would make the article more valuable to readers.
+
+---
+
+EOF
+
+# Add each modified file's content to the review prompt
+echo "$STAGED_BLOG_FILES" | while read -r file; do
+    if [ -f "$file" ]; then
+        echo "" >> "$REVIEW_PROMPT_FILE"
+        echo "## File: $file" >> "$REVIEW_PROMPT_FILE"
+        echo "" >> "$REVIEW_PROMPT_FILE"
+        echo '```markdown' >> "$REVIEW_PROMPT_FILE"
+        cat "$file" >> "$REVIEW_PROMPT_FILE"
+        echo "" >> "$REVIEW_PROMPT_FILE"
+        echo '```' >> "$REVIEW_PROMPT_FILE"
+        echo "" >> "$REVIEW_PROMPT_FILE"
+    fi
+done
+
+# Display the prompt
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${YELLOW}📋 REVIEW PROMPT GENERATED${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo -e "${GREEN}The review prompt has been saved to: ${REVIEW_PROMPT_FILE}${NC}"
+echo ""
+echo -e "${YELLOW}Next steps:${NC}"
+echo -e "  1. Copy the content of the prompt file"
+echo -e "  2. Paste it into Claude Code (this CLI) or Claude.ai"
+echo -e "  3. Review Claude's feedback"
+echo -e "  4. Make any necessary changes to your article"
+echo -e "  5. Come back here to continue the commit"
+echo ""
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+
+# Try to open the file in the default editor or display it
+if command -v cat &> /dev/null; then
+    echo -e "${YELLOW}Review prompt content:${NC}"
+    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    cat "$REVIEW_PROMPT_FILE"
+    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo ""
+fi
+
+# Try to copy to clipboard if possible
+if command -v clip.exe &> /dev/null; then
+    # Windows (Git Bash)
+    cat "$REVIEW_PROMPT_FILE" | clip.exe
+    echo -e "${GREEN}✓ Prompt copied to clipboard!${NC}"
+    echo ""
+elif command -v pbcopy &> /dev/null; then
+    # macOS
+    cat "$REVIEW_PROMPT_FILE" | pbcopy
+    echo -e "${GREEN}✓ Prompt copied to clipboard!${NC}"
+    echo ""
+elif command -v xclip &> /dev/null; then
+    # Linux with xclip
+    cat "$REVIEW_PROMPT_FILE" | xclip -selection clipboard
+    echo -e "${GREEN}✓ Prompt copied to clipboard!${NC}"
+    echo ""
+else
+    echo -e "${YELLOW}💡 Tip: Install 'xclip' (Linux) or use clip.exe (Windows) for automatic clipboard copy${NC}"
+    echo ""
+fi
+
+# Ask for confirmation
+echo -e "${YELLOW}Have you reviewed the article(s) with Claude?${NC}"
+read -p "Continue with commit? [y/N] " -n 1 -r
+echo ""
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo -e "${RED}✗ Commit cancelled. Make your changes and try again.${NC}"
+    rm -f "$REVIEW_PROMPT_FILE"
+    exit 1
+fi
+
+echo -e "${GREEN}✓ Proceeding with commit...${NC}"
+rm -f "$REVIEW_PROMPT_FILE"
+exit 0
