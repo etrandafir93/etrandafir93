@@ -26,7 +26,7 @@ a dependency but utilizes only a select few of its methods, ideally just one.
 We'll use Java for the code examples in the article, but the approach 
 can be applied regardless of the language or testing frameworks. 
 
-Let's start with a typical example:
+Let's start with a typical exampel:
 
 ```java
 class AccountService {
@@ -62,6 +62,8 @@ void testWithMocks() {
     ));
 }
 ```
+
+[//]: # (todo: remove me before merging!)
 
 ## Using Functions for Side Effects
 
