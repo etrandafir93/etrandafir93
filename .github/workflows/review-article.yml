@@ -1,0 +1,55 @@
+name: Review Article with Claude
+
+on:
+  pull_request:
+    paths:
+      - 'site/docs/blog/*.md'
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Get full history to detect changes
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Get changed markdown files
+        id: changed-files
+        run: |
+          # Get the list of changed .md files in site/docs/blog/
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '^site/docs/blog/.*\.md$' || true)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No blog articles changed"
+            echo "files=" >> $GITHUB_OUTPUT
+          else
+            echo "Changed files:"
+            echo "$CHANGED_FILES"
+            # Convert to JSON array
+            FILES_JSON=$(echo "$CHANGED_FILES" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "files=$FILES_JSON" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Review articles with Claude
+        if: steps.changed-files.outputs.files != ''
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node .github/workflows/scripts/review-article.js '${{ steps.changed-files.outputs.files }}'
