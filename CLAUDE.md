@@ -47,21 +47,33 @@ The repository focuses on content creation (blog posts, resume updates) rather t
 2. Add images to `/site/docs/img/` if needed
 3. Update the `nav` section in `/site/mkdocs.yml` to include the new post
 
-## Automated Article Review
+## Pre-Commit Article Review
 
-A GitHub Actions workflow automatically reviews new/modified blog articles using Claude AI when you create a pull request.
+A Git pre-commit hook automatically prompts you to review blog articles with Claude before committing changes.
 
-**Setup Requirements:**
-1. Add `ANTHROPIC_API_KEY` as a GitHub repository secret:
-   - Go to Repository Settings → Secrets and variables → Actions
-   - Click "New repository secret"
-   - Name: `ANTHROPIC_API_KEY`
-   - Value: Your Anthropic API key from https://console.anthropic.com/
+**Setup:**
+
+Run the installation script (only needed once):
+
+```bash
+# Using Git Bash (recommended for Windows)
+bash .githooks/install.sh
+
+# OR using PowerShell (Windows)
+powershell .githooks/install.ps1
+```
 
 **How It Works:**
-- The workflow triggers automatically when you push changes to `.md` files in `/site/docs/blog/` on a PR
-- Claude reviews the article for technical accuracy, clarity, code quality, structure, and consistency
-- Review feedback is posted as a PR comment
+
+1. You modify a blog article in `/site/docs/blog/`
+2. You stage and try to commit: `git commit -m "Update article"`
+3. The pre-commit hook detects the change and:
+   - Generates a review prompt with the article content
+   - Displays it in your terminal
+   - Copies it to your clipboard (if possible)
+4. You paste the prompt into Claude Code (this CLI) or Claude.ai
+5. You review Claude's feedback
+6. You confirm to proceed with the commit (or cancel to make changes)
 
 **What Claude Reviews:**
 - Technical accuracy of concepts and code examples
@@ -71,6 +83,13 @@ A GitHub Actions workflow automatically reviews new/modified blog articles using
 - Consistency with Emanuel's writing style (simplicity, intentionality, design, testability)
 - Grammar and spelling
 
-**Workflow Files:**
-- `.github/workflows/review-article.yml` - GitHub Actions workflow
-- `.github/workflows/scripts/review-article.js` - Review script that calls Claude API
+**Benefits:**
+- No extra API costs (uses your existing Claude access)
+- Automatic trigger before commits
+- Review happens locally in your workflow
+- You control when to proceed
+
+**Hook Files:**
+- `.githooks/pre-commit` - The pre-commit hook script
+- `.githooks/install.sh` - Installation script for Unix/Git Bash
+- `.githooks/install.ps1` - Installation script for PowerShell
