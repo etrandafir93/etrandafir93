@@ -18,7 +18,7 @@ At times, I found myself revisiting certain chapters to fully absorb their insig
 
 ![img](../img/tidy-first_book.jpeg)
 
-## Tidyings: Small Improvements with Big Impact
+## Small Improvements with Big Impact
 
 The first section of the book explains what _"tidyings"_ are, and provides some 
 practical examples for 15 of these small improvements. In essence, we can think of 
@@ -35,7 +35,7 @@ we tend to commit big batches of structural changes and justify them as refactor
 By contrast, **tidyings are small, incremental improvements** that don't 
 require a deep understanding of the codebase.
 
-## Questions over Rules
+## Structural and Behavioral Changes
 
 In the second part of the book, Kent Beck discusses the **two main types of 
 software changes**: those related to _structure_ and those related to _behavior_. 
@@ -55,7 +55,7 @@ timing of structural changes:
 
 - Should we tidy the code at all? - _it depends_.
 
-## The Human Element
+## Changers and Observers
 
 > "Software design is an exercise in human relationships"
 >
