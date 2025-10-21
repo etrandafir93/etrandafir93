@@ -47,8 +47,13 @@ Tidy First? presents a set of questions and ideas that will serve as a guide
 to aid you in making the best decisions for your particular use case.
 
 For instance, the book doesn't provide a definitive answer regarding the 
-timing of structural changes: should they precede the implementation of 
-the required feature? - Maybe. should they be implemented at all? - it depends.
+timing of structural changes: 
+
+- Should they precede the implementation of the required feature? - _Possible_. 
+
+- Should we tidy the code after implementing a new feature? - _Maybe_. 
+
+- Should we tidy the code at all? - _it depends_.
 
 ## The Human Element
 
