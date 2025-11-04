@@ -76,4 +76,20 @@ function showArticles(tag) {
   event.target.classList.add('active');
   currentActive = articleDiv;
 }
+
+// Auto-expand tag based on URL hash on page load
+window.addEventListener('DOMContentLoaded', function() {
+  const hash = window.location.hash.substring(1); // Remove the '#'
+  if (hash) {
+    const articleDiv = document.getElementById(hash + '-articles');
+    const button = Array.from(document.querySelectorAll('.tag-chip'))
+      .find(btn => btn.getAttribute('onclick').includes(`'${hash}'`));
+
+    if (articleDiv && button) {
+      articleDiv.classList.add('active');
+      button.classList.add('active');
+      currentActive = articleDiv;
+    }
+  }
+});
 </script>

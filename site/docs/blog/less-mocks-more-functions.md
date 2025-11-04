@@ -2,7 +2,7 @@
 
 *Published: September 28, 2025*
 
-`#functional programming` `#design` `#testing` `#java`
+[`#functional programming`](/#functional-programming) [`#design`](/#design) [`#testing`](/#testing) `#java`
 
 After [playing with Clojure](/blog/clojure-threading/), I was amazed by 
 how testable everything is in the functional world.

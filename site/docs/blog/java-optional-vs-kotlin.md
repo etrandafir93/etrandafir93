@@ -2,7 +2,7 @@
 
 *Published: July 16, 2023*
 
-`#java` `#kotlin` `#functional programming` `#design`
+`#java` `#kotlin` [`#functional programming`](/#functional-programming)
 
 In a previous article, we compared Java's syntax to
 [Clojure's threading operators](clojure-threading.md).
@@ -106,7 +106,7 @@ the power of _map()_ or _flatMap()_, Kotlin provides more concise approach, via 
 
 ```kotlin
 // kotlin
-val street: String = account?.address?.street ?: "unkown"
+val street: String = account?.address?.street?: "unkown"
 
 // java
 String street = Optional.ofNullable(account)

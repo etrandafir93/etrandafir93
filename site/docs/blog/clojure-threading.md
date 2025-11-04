@@ -2,7 +2,7 @@
 
 *Published: August 30, 2025*
 
-`#clojure` `#java` `#functional programming`
+`#clojure` `#java` [`#functional programming`](/#functional-programming)
 
 Recently, I've been playing around with Clojure. 
 I wanted to take advantage of the AI tools available to explore a new language...

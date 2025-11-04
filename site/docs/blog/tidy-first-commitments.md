@@ -2,7 +2,7 @@
 
 *Published: April 11, 2024*
 
-`#software design` `#books`
+`#software design` [`#books`](/#books)
 
 You know that good feeling when you come across a piece of code that's concise 
 and cohesive? The code that allows you to focus on its purpose, and it 
