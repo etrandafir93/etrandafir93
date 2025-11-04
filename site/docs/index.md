@@ -25,6 +25,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="design-articles" class="articles-container">
   <ul>
+    <li><a href="blog/java-optional-vs-kotlin/">Java's Optional vs Kotlin: Side by Side</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
   </ul>
 </div>
@@ -32,6 +33,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 <div id="functional-programming-articles" class="articles-container">
   <ul>
     <li><a href="blog/clojure-threading/">Clojure Threading for Dummy Java Devs (such as myself)</a></li>
+    <li><a href="blog/java-optional-vs-kotlin/">Java's Optional vs Kotlin: Side by Side</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
   </ul>
 </div>

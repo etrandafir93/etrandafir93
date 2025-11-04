@@ -46,6 +46,28 @@ The repository focuses on content creation (blog posts, resume updates) rather t
 1. Create a new Markdown file in `/site/docs/blog/`
 2. Add images to `/site/docs/img/` if needed
 3. Update the `nav` section in `/site/mkdocs.yml` to include the new post
+4. Add the article to the appropriate tag sections in `/site/docs/index.md`
+
+## Article Formatting Guidelines
+
+When writing or editing blog articles, follow these formatting conventions:
+
+### Method and Class Name Formatting
+- **Method names**: Use italics with parentheses: _methodName()_
+  - Examples: _get()_, _orElseThrow()_, _map()_, _flatMap()_, _ifPresent()_
+- **Class names**: Use italics: _ClassName_
+  - Examples: _Optional_, _Account_, _String_
+- **Special syntax/operators**: Use backticks: `operator`
+  - Examples: `?:`, `!!`, `?.`, `->>`, `?`
+
+### Examples
+- ❌ Incorrect: "The `Optional` class provides the `get()` method"
+- ✅ Correct: "The _Optional_ class provides the _get()_ method"
+
+- ❌ Incorrect: "Use the `?:` Elvis Operator or the _!!_ operator"
+- ✅ Correct: "Use the `?:` Elvis Operator or the `!!` operator"
+
+This ensures consistency across all technical articles and improves readability by clearly distinguishing between method/class references and syntax elements.
 
 ## Automated Article Review
 
