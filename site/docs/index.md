@@ -25,6 +25,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="design-articles" class="articles-container">
   <ul>
+    <li><a href="blog/clean-code-dependency-principles/">Uncle Bob's Advice on Stability and Abstractions</a></li>
     <li><a href="blog/java-optional-vs-kotlin/">Java's Optional vs Kotlin: Side by Side</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
   </ul>
