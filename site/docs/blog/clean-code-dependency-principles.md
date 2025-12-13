@@ -9,8 +9,13 @@ triggers a cascade of changes across the entire system?
 Or where circular dependencies make it nearly impossible to understand 
 which component is responsible for what?
 
-Uncle Bob's Clean Code series addresses these issues with some
+Uncle Bob's [Clean Code](https://cleancoders.com/) series addresses these issues with some
 fundamental principles for managing dependencies in software systems. 
+
+In this short article, we'll discuss the incoming and outgoing dependencies of our software,
+and classify our components as _stable_ or _unstable_.
+Then, we'll learn that stable component should be more _abstract_, 
+whereas unstable components can remain _concrete_.
 
 ## Stable vs Unstable Components
 
@@ -18,22 +23,23 @@ Let's imagine you built a small library for parsing CSV files.
 At first, only your team uses it - it's relatively _unstable_. 
 You can make breaking changes without too much hassle. 
 
-But then, you outsource it and it suddenly becomes super popular.
+But then, you open-source it and it suddenly becomes super popular.
 Now thousands of projects depend on it, which makes it very _stable_.
 It's stable because you cannot afford to easily make breaking changes to it anymore.
 
 ![stable vs unstable component](../img/abstractions_stable_comp.png)
 
-So, we can say that **a component is stable if it doesn't depend on many other components,
-but it has other components depending on it.** On the other hand, an unstable component has many efferent dependencies.
+So, we can say that **a component is stable if it has many components depending on it,
+while depending on few others itself.** 
+On the other hand, an unstable component has many efferent dependencies.
 
 ```plaintext
-    According to Uncle Bob's _Stable Dependencies Principle_, 
+    According to Uncle Bob's Stable Dependencies Principle, 
     a component should only depend on components that are more stable than itself.
 ```
 
-For instance, for your CSV parser library with thousands of user,
-it's ok to depend on a well-established date/time library which si even more popular.
+For instance, for your CSV parser library with thousands of users,
+it's ok to depend on a well-established date/time library which is even more popular.
 On the other hand, it would be a bad idea to add a dependency on a small utility library 
 that is still evolving rapidly.
 
@@ -60,9 +66,9 @@ Most probably, this application is going to have many outgoing dependencies.
 
 Moreover, it will enable the users to perform some operations 
 that are very specific to our system. 
-Therefore, we can sa that **our UI application is unstable and concrete.**
+Therefore, we can say that **our UI application is unstable and concrete.**
 
-![abstarct vs concrete compoennts](../img/abstractions_stable_graph.png)
+![abstract vs concrete components](../img/abstractions_stable_graph.png)
 
 If we have a component that is unstable (few others depend on it & it has many other dependencies),
 there is no point in keeping it abstract - it'll be useless.
