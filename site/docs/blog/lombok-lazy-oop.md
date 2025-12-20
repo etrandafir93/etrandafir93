@@ -81,6 +81,7 @@ void test() {
 
 Assuming the _calculateSalary()_ method involves I/O and takes a long time,
 we'd want following behavior from our lazy getter:
+
 - a fast constructor;
 - a slow initial evaluation of the salary;
 - fast subsequent evaluations;
