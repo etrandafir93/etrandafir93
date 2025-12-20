@@ -11,4 +11,5 @@ nav:
   - "Clojure Threading for Dummy Java Devs (such as myself)": blog/clojure-threading.md
   - "Less Mocks, More Functions!": blog/less-mocks-more-functions.md
   - "Java's Optional vs Kotlin: Side by Side": blog/java-optional-vs-kotlin.md
+  - "Lombok's \"Lazy\" Magic and the O.O.P. Alternative": blog/lombok-lazy-oop.md
   - "Uncle Bob's Advice on Stability and Abstractions": blog/clean-code-dependency-principles.md
