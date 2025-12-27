@@ -2,7 +2,7 @@
 
 *Published: April 11, 2024*
 
-`#software design` [`#books`](/#books)
+[`#design`](/#design) [`#books`](/#books)
 
 You know that good feeling when you come across a piece of code that's concise 
 and cohesive? The code that allows you to focus on its purpose, and it 
@@ -57,9 +57,10 @@ timing of structural changes:
 
 ## Changers and Observers
 
-> "Software design is an exercise in human relationships"
->
-> - Kent Beck
+```plaintext
+    "Software design is an exercise in human relationships"
+        - Kent Beck
+```
 
 The last section of the book delves into more theoretical concepts, 
 like _coupling_ and _cohesion_. Another interesting discussion in 
