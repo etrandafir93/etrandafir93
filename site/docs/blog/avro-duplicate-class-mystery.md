@@ -24,11 +24,14 @@ At the center of it all was a simple schema: _MoneyAmount.avsc_.
 }
 ```
 
-When we looked into how to make the change, we discovered that _Order.avsc_ and _MoneyAmount.avsc_ lived in different repositories.
-The _order-api_ library was pulling in _MoneyAmount.avsc_ from its remote location to generate the Java classes during build time.
+When we looked into how to make the change, we discovered that _Order.avsc_ and _MoneyAmount.avsc_ 
+lived in different repositories.
+The _order-api_ library was pulling in _MoneyAmount.avsc_ from its remote location 
+to generate the Java classes during build time.
 
 At some point, somebody had tried to build _MoneyAmount_ as a separate JAR in a commons library.
-But that didn't work—libraries like _order-api_ needed the _MoneyAmount.avsc_ file itself during their build process
+But that didn't work—libraries like _order-api_ needed the _MoneyAmount.avsc_ file itself 
+during their build process
 to generate Java classes from schemas that referenced it.
 So that initiative got abandoned pretty quick, and we kept the setup as-is.
 
@@ -135,7 +138,8 @@ MoneyAmount[amount=100.50, currency=USD, currencySymbol=$]
 
 On the other hand, we can reverse the order of the JARs,
 the _main()_ method will fail to create a _MoneyAmount_ instance.
-It'll say it's not aware of a _MoneyAmount_ constructor accepting three parameters (amount, currency, symbol),
+It'll say it's not aware of a _MoneyAmount_ constructor accepting 
+three parameters (amount, currency, symbol),
 it only knows the old two-parameter constructor:
 
 ```plaintext
@@ -151,19 +155,23 @@ which explained the non-deterministic behavior.
 
 We had violated a fundamental principle: **a generated class should have exactly one owner.** 
 Our setup allowed multiple libraries to independently generate the same class from the same schema. 
-When the schema evolved, each library built its own version at different times, creating conflicting definitions on the classpath. 
+When the schema evolved, each library built its own version at different times, 
+creating conflicting definitions on the classpath. 
 The JVM's classloader picked one version at random, making the behavior completely non-deterministic.
 
 But there's a deeper issue here.
-In Domain-Driven Design terms, _payment-api_ and _order-api_ represent different bounded contexts.
-Each context should own its data models.
-If both contexts needed a money concept, each should have declared its own _MoneyAmount_ schema—even if they looked similar.
-Instead, we had a shared schema with no clear ownership, living in a separate repository that neither context truly controlled.
+**In Domain-Driven Design terms, _payment-api_ and _order-api_ represent different bounded contexts.
+Each context should own its data models.**
+If both contexts needed a money concept, each should have declared its own _MoneyAmount_ schema
+—even if they looked similar.
+Instead, we had a shared schema with no clear ownership, 
+living in a separate repository that neither context truly controlled.
 
 ## How We Could Have Caught It Earlier
 
 The service in our test environment was rarely restarted, but our CI/CD pipeline ran tests constantly.
-**If we had integration tests that actually went through the Kafka layer**, we would have caught this much earlier.
+**If we had integration tests that actually went through the Kafka layer**, 
+we would have caught this much earlier.
 
 Using tools like Testcontainers or Embedded Kafka would have surfaced the issue.
 Sure, this test might have produced some false negatives,
@@ -171,7 +179,8 @@ but it would have been failing often enough for us to investigate.
 
 **Another tool that could have saved us is the Maven Enforcer Plugin with 
 its [_banDuplicateClasses_](https://www.mojohaus.org/extra-enforcer-rules/banDuplicateClasses.html) rule.**
-This plugin scans your dependencies at build time and fails the build if it detects multiple JARs providing the same class. 
+This plugin scans your dependencies at build time and fails the build 
+if it detects multiple JARs providing the same class. 
 If we had configured it in our projects, the build would have failed immediately, 
 preventing the duplicate _MoneyAmount_ classes from ever reaching our test environment.
 
@@ -249,7 +258,8 @@ Let's try it out in our sample project:
 - Unit tests aren't enough
 
 This bug taught us that architectural mistakes don't always fail immediately. 
-They lie dormant, waiting for the perfect storm: a schema change, a deployment, a classloader race condition.
+They lie dormant, waiting for the perfect storm: a schema change, a deployment, 
+a classloader race condition.
 
 You can play with a demo project and try the Maven plugin yourself at 
 [github.com/etrandafir93/dupped_java_classes](https://github.com/etrandafir93/dupped_java_classes/tree/main).
