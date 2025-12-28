@@ -6,6 +6,8 @@ theme:
   custom_dir: overrides
 extra_css:
   - stylesheets/extra.css
+extra_javascript:
+  - https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform
 nav:
   - "--- About Me ---": index.md
   - "The Case of the Vanishing Schema Field": blog/avro-duplicate-class-mystery.md

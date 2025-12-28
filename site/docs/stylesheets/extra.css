@@ -86,3 +86,24 @@ img[src*="me.jpeg"] {
 .articles-container a:hover {
   color: #8be9fd;
 }
+
+/* ShareThis buttons - compact and side-by-side */
+.sop {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+}
+
+.sop .st-btn {
+  min-width: auto !important;
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.875rem !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sop .st-btn {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.75rem !important;
+  }
+}

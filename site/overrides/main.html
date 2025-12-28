@@ -1,36 +1,11 @@
 {% extends "base.html" %}
 
-{% block extrahead %}
-  {{ super() }}
-  <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop' async='async'></script>
-  <style>
-    /* Make ShareThis buttons compact and side-by-side */
-    .sharethis-inline-share-buttons {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: 0.5rem !important;
-    }
-    .sharethis-inline-share-buttons .st-btn {
-      min-width: auto !important;
-      padding: 0.4rem 0.8rem !important;
-      font-size: 0.875rem !important;
-    }
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      .sharethis-inline-share-buttons .st-btn {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.75rem !important;
-      }
-    }
-  </style>
-{% endblock %}
-
 {% block content %}
   {{ super() }}
 
   <!-- ShareThis Buttons -->
   <div style="margin-top: 2rem; padding: 1rem 7px;">
-    <div class="sharethis-inline-share-buttons" data-alignment="left"></div>
+    <div class="sop"></div>
   </div>
 
   <!-- Giscus Comments -->
