@@ -18,6 +18,8 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div class="tag-container">
   <button class="tag-chip" onclick="showArticles('design')">#design</button>
+  <button class="tag-chip" onclick="showArticles('debugging')">#debugging</button>
+  <button class="tag-chip" onclick="showArticles('kafka')">#kafka</button>
   <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming</button>
   <button class="tag-chip" onclick="showArticles('oop')">#oop</button>
   <button class="tag-chip" onclick="showArticles('testing')">#testing</button>
@@ -26,10 +28,23 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="design-articles" class="articles-container">
   <ul>
+    <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>
     <li><a href="blog/clean-code-dependency-principles/">Uncle Bob's Advice on Stability and Abstractions</a></li>
     <li><a href="blog/java-optional-vs-kotlin/">Java's Optional vs Kotlin: Side by Side</a></li>
     <li><a href="blog/lombok-lazy-oop/">Lombok's "Lazy" Magic and the O.O.P. Alternative</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
+  </ul>
+</div>
+
+<div id="debugging-articles" class="articles-container">
+  <ul>
+    <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>
+  </ul>
+</div>
+
+<div id="kafka-articles" class="articles-container">
+  <ul>
+    <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>
   </ul>
 </div>
 
@@ -49,6 +64,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="testing-articles" class="articles-container">
   <ul>
+    <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
   </ul>
 </div>
