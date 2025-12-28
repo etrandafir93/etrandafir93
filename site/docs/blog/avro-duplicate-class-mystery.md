@@ -173,7 +173,9 @@ but it would have been failing often enough for us to investigate.
 its [_banDuplicateClasses_](https://www.mojohaus.org/extra-enforcer-rules/banDuplicateClasses.html) rule.**
 This plugin scans your dependencies at build time and fails the build if it detects multiple JARs providing the same class. 
 If we had configured it in our projects, the build would have failed immediately, 
-preventing the duplicate _MoneyAmount_ classes from ever reaching our test environment:
+preventing the duplicate _MoneyAmount_ classes from ever reaching our test environment.
+
+Let's add the Maven Enforcer Plugin to our sample project's _pom.xml_:
 
 ```xml
 <build>
@@ -248,3 +250,6 @@ Let's try it out in our sample project:
 
 This bug taught us that architectural mistakes don't always fail immediately. 
 They lie dormant, waiting for the perfect storm: a schema change, a deployment, a classloader race condition.
+
+You can play with a demo project and try the Maven plugin yourself at 
+[github.com/etrandafir93/dupped_java_classes](https://github.com/etrandafir93/dupped_java_classes/tree/main).
