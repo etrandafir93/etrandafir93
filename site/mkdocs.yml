@@ -3,6 +3,7 @@ theme:
   name: dracula
   logo: img/me.jpeg
   favicon: img/me.jpeg
+  custom_dir: overrides
 extra_css:
   - stylesheets/extra.css
 nav:
