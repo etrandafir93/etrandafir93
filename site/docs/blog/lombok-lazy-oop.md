@@ -162,13 +162,13 @@ void test() {
   Employee employee = new EmployeeWithCachedSalary(new Employee());
   log.info("employee created!");
 
-  var s = employee.salary();
+  BigDecimal salary = employee.getSalary();
   log.info("salary retrieved: " + s);
-  
-  s = employee.salary();
+
+  salary = employee.getSalary();
   log.info("salary retrieved: " + s);
-  
-  s = employee.salary();
+
+  salary = employee.getSalary();
   log.info("salary retrieved: " + s);
 }
 ```
