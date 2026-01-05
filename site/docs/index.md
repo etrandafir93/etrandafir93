@@ -16,6 +16,26 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 ---
 
+## 📬 Emanuel's Dev Log
+
+Monthly articles on avoiding over-engineering, improving testability,
+and writing code with intentionality.
+
+No AI-generated fluff!
+
+<form
+  action="https://buttondown.email/api/emails/embed-subscribe/etrandafir"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.email/etrandafir', 'popupwindow')"
+  class="embeddable-buttondown-form"
+>
+  <input type="email" name="email" id="bd-email" placeholder="Enter your email" required />
+  <input type="submit" value="Subscribe" />
+</form>
+
+---
+
 <div class="tag-container">
   <button class="tag-chip" onclick="showArticles('design')">#design</button>
   <button class="tag-chip" onclick="showArticles('debugging')">#debugging</button>
