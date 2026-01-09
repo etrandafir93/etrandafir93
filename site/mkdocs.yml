@@ -8,6 +8,7 @@ extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform
+  - javascripts/newsletter.js
 nav:
   - "--- About Me ---": index.md
   - "The Case of the Vanishing Schema Field": blog/avro-duplicate-class-mystery.md
