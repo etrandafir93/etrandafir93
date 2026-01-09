@@ -4,7 +4,12 @@
       "Bash(cat:*)",
       "Bash(test:*)",
       "Bash(mkdir:*)",
-      "Bash(docker-compose up:*)"
+      "Bash(docker-compose up:*)",
+      "Bash(cd:*)",
+      "Bash(dir /s /b)",
+      "Bash(findstr:*)",
+      "Bash(dir:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []

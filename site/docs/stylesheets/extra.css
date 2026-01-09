@@ -15,26 +15,26 @@ img[src*="me.jpeg"] {
 }
 
 .tag-chip {
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #bd93f9 0%, #ff79c6 100%);
-  color: #282a36;
-  border: none;
-  border-radius: 25px;
+  padding: 8px 16px;
+  background: rgba(98, 114, 164, 0.3);
+  color: #f8f8f2;
+  border: 1px solid #6272a4;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .tag-chip:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(189, 147, 249, 0.4);
+  background: rgba(98, 114, 164, 0.5);
+  border-color: #bd93f9;
 }
 
 .tag-chip.active {
-  background: linear-gradient(135deg, #50fa7b 0%, #8be9fd 100%);
-  color: #282a36;
+  background: rgba(189, 147, 249, 0.2);
+  border-color: #bd93f9;
+  color: #bd93f9;
 }
 
 .articles-container {
@@ -91,7 +91,7 @@ img[src*="me.jpeg"] {
 .embeddable-buttondown-form {
   display: flex;
   gap: 10px;
-  margin: 20px 0;
+  margin: 20px auto;
   max-width: 500px;
 }
 

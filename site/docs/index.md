@@ -14,27 +14,7 @@ I care deeply about the **design and testability** of the software I create.
 
 I also value **communication and collaboration** and enjoy sharing my knowledge through open-source contributions and technical articles.
 
----
-
-## 📬 Emanuel's Dev Log
-
-Monthly articles on avoiding over-engineering, improving testability,
-and writing code with intentionality.
-
-No AI-generated fluff!
-
-<form
-  action="https://buttondown.email/api/emails/embed-subscribe/etrandafir"
-  method="post"
-  target="popupwindow"
-  onsubmit="window.open('https://buttondown.email/etrandafir', 'popupwindow')"
-  class="embeddable-buttondown-form"
->
-  <input type="email" name="email" id="bd-email" placeholder="Enter your email" required />
-  <input type="submit" value="Subscribe" />
-</form>
-
----
+<p style="padding-top: 30px;">Browse articles by topic:</p>
 
 <div class="tag-container">
   <button class="tag-chip" onclick="showArticles('design')">#design</button>
@@ -136,5 +116,50 @@ window.addEventListener('DOMContentLoaded', function() {
       currentActive = articleDiv;
     }
   }
+
+  // Newsletter form handling
+  const form = document.getElementById('newsletter-form');
+  const messageDiv = document.getElementById('newsletter-message');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('bd-email').value;
+    const submitBtn = form.querySelector('input[type="submit"]');
+    const originalBtnText = submitBtn.value;
+
+    submitBtn.value = 'Subscribing...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('https://buttondown.email/api/emails/embed-subscribe/etrandafir', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `email=${encodeURIComponent(email)}`
+      });
+
+      if (response.ok) {
+        messageDiv.textContent = 'Successfully subscribed! Check your email to confirm.';
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = 'rgba(80, 250, 123, 0.2)';
+        messageDiv.style.border = '2px solid #50fa7b';
+        messageDiv.style.color = '#50fa7b';
+        form.reset();
+      } else {
+        throw new Error('Subscription failed');
+      }
+    } catch (error) {
+      messageDiv.textContent = 'Something went wrong. Please try again.';
+      messageDiv.style.display = 'block';
+      messageDiv.style.background = 'rgba(255, 85, 85, 0.2)';
+      messageDiv.style.border = '2px solid #ff5555';
+      messageDiv.style.color = '#ff5555';
+    } finally {
+      submitBtn.value = originalBtnText;
+      submitBtn.disabled = false;
+    }
+  });
 });
 </script>
