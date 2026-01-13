@@ -17,14 +17,14 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 <p style="padding-top: 30px;">Browse articles by topic:</p>
 
 <div class="tag-container">
-  <button class="tag-chip" onclick="showArticles('design')">#design</button>
-  <button class="tag-chip" onclick="showArticles('debugging')">#debugging</button>
-  <button class="tag-chip" onclick="showArticles('kafka')">#kafka</button>
-  <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming</button>
-  <button class="tag-chip" onclick="showArticles('oop')">#oop</button>
-  <button class="tag-chip" onclick="showArticles('testing')">#testing</button>
-  <button class="tag-chip" onclick="showArticles('oss')">#oss</button>
-  <button class="tag-chip" onclick="showArticles('books')">#books</button>
+  <button class="tag-chip" onclick="showArticles('design')">#design (5)</button>
+  <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming (3)</button>
+  <button class="tag-chip" onclick="showArticles('testing')">#testing (2)</button>
+  <button class="tag-chip" onclick="showArticles('debugging')">#debugging (1)</button>
+  <button class="tag-chip" onclick="showArticles('kafka')">#kafka (1)</button>
+  <button class="tag-chip" onclick="showArticles('oop')">#oop (1)</button>
+  <button class="tag-chip" onclick="showArticles('oss')">#oss (1)</button>
+  <button class="tag-chip" onclick="showArticles('books')">#books (1)</button>
 </div>
 
 <div id="design-articles" class="articles-container">
