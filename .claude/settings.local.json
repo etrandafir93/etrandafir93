@@ -9,7 +9,10 @@
       "Bash(dir /s /b)",
       "Bash(findstr:*)",
       "Bash(dir:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(gh pr view:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh pr diff:*)"
     ],
     "deny": [],
     "ask": []
