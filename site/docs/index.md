@@ -19,7 +19,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 <div class="tag-container">
   <button class="tag-chip" onclick="showArticles('design')">#design (5)</button>
   <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming (3)</button>
-  <button class="tag-chip" onclick="showArticles('testing')">#testing (2)</button>
+  <button class="tag-chip" onclick="showArticles('testing')">#testing (3)</button>
   <button class="tag-chip" onclick="showArticles('debugging')">#debugging (1)</button>
   <button class="tag-chip" onclick="showArticles('kafka')">#kafka (1)</button>
   <button class="tag-chip" onclick="showArticles('oop')">#oop (1)</button>
@@ -65,6 +65,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="testing-articles" class="articles-container">
   <ul>
+    <li><a href="blog/micrometer-assertions-contribution/">My First Contribution to Micrometer</a></li>
     <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
   </ul>
