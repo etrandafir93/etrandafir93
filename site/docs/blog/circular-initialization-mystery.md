@@ -5,6 +5,7 @@
 [`#oss`](/#oss) [`#debugging`](/#debugging) 
 
 This is the story of a flaky test that was passing for all the wrong reasons.
+
 It's about null comparisons, circular dependencies, class initialization order,
 and how the JVM can surprise you when you least expect it.
 
