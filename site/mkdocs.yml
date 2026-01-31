@@ -11,6 +11,8 @@ extra_javascript:
   - javascripts/newsletter.js
 nav:
   - "--- About Me ---": index.md
+  - "My First Contribution to Micrometer": blog/micrometer-assertions-contribution.md
+  - "The Case of the Sometimes-Null Constant": blog/circular-initialization-mystery.md
   - "The Case of the Vanishing Schema Field": blog/avro-duplicate-class-mystery.md
   - "'Tidy First?' and my Post-Reading Commitments": blog/tidy-first-commitments.md
   - "Clojure Threading for Dummy Java Devs (such as myself)": blog/clojure-threading.md
