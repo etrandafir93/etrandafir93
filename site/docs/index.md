@@ -20,10 +20,10 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
   <button class="tag-chip" onclick="showArticles('design')">#design (5)</button>
   <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming (3)</button>
   <button class="tag-chip" onclick="showArticles('testing')">#testing (3)</button>
-  <button class="tag-chip" onclick="showArticles('debugging')">#debugging (1)</button>
+  <button class="tag-chip" onclick="showArticles('debugging')">#debugging (2)</button>
+  <button class="tag-chip" onclick="showArticles('oss')">#oss (2)</button>
   <button class="tag-chip" onclick="showArticles('kafka')">#kafka (1)</button>
   <button class="tag-chip" onclick="showArticles('oop')">#oop (1)</button>
-  <button class="tag-chip" onclick="showArticles('oss')">#oss (1)</button>
   <button class="tag-chip" onclick="showArticles('books')">#books (1)</button>
 </div>
 
@@ -39,6 +39,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="debugging-articles" class="articles-container">
   <ul>
+    <li><a href="blog/circular-initialization-mystery/">The Case of the Sometimes-Null Constant</a></li>
     <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>
   </ul>
 </div>
@@ -73,6 +74,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="oss-articles" class="articles-container">
   <ul>
+    <li><a href="blog/circular-initialization-mystery/">The Case of the Sometimes-Null Constant</a></li>
     <li><a href="blog/micrometer-assertions-contribution/">My First Contribution to Micrometer</a></li>
   </ul>
 </div>
