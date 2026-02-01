@@ -101,13 +101,16 @@ Take a moment to think about it.
 <summary>(see the answer)</summary>
 
 There's a circular dependency during class initialization:
-
-- _Scope.NOOP_ points to _NoopScope.INSTANCE_
-- _NoopScope_ implements _Scope_
-
+<br/>
+<ul>
+    <li> <i>Scope.NOOP</i> points to <i>NoopScope.INSTANCE</i> </li>
+    <li> <i>NoopScope</i> implements <i>Scope</i> </li>
+</ul>
 </details>
 
+<br/>
 When the JVM initializes _NoopScope.INSTANCE_ first:
+
 - It loads the _NoopScope_ class
 - Since _NoopScope_ implements _Scope_, it loads the _Scope_ interface
 - The interface tries to initialize _Scope.NOOP_ by referencing _NoopScope.INSTANCE_
