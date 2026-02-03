@@ -73,8 +73,8 @@ So, _getCurrentObservationScope()_ was always returning _null_.
 That's good to know, it can be dealt with in a different issue.
 But, for me, the more interesting question was: 
 
-_How could Scope.NOOP be null as well?_ 
-It's a singleton static final field - is this even possible?
+**_How could Scope.NOOP be null as well?_ 
+It's a singleton static final field - is this even possible?**
 
 ![But Why?](../img/micrometer-cricular-ref-1.png)
 
