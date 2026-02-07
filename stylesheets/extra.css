@@ -1,0 +1,166 @@
+.md-header__button.md-logo img,
+.md-nav__button.md-logo img,
+img[src*="me.jpeg"] {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    filter: grayscale(1) sepia(0.2) hue-rotate(180deg) !important;
+}
+
+/* Tag navigation styles */
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.tag-chip {
+  padding: 8px 16px;
+  background: rgba(98, 114, 164, 0.3);
+  color: #f8f8f2;
+  border: 1px solid #6272a4;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tag-chip:hover {
+  background: rgba(98, 114, 164, 0.5);
+  border-color: #bd93f9;
+}
+
+.tag-chip.active {
+  background: rgba(189, 147, 249, 0.2);
+  border-color: #bd93f9;
+  color: #bd93f9;
+}
+
+.articles-container {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(68, 71, 90, 0.3);
+  border-radius: 8px;
+  border-left: 4px solid #bd93f9;
+  display: none;
+}
+
+.articles-container.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.articles-container h3 {
+  color: #bd93f9;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.articles-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.articles-container li {
+  margin: 10px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(98, 114, 164, 0.3);
+}
+
+.articles-container li:last-child {
+  border-bottom: none;
+}
+
+.articles-container a {
+  color: #f8f8f2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.articles-container a:hover {
+  color: #8be9fd;
+}
+
+/* Newsletter subscription form */
+.embeddable-buttondown-form {
+  display: flex;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.embeddable-buttondown-form input[type="email"] {
+  flex: 1;
+  padding: 12px 16px;
+  background: #44475a;
+  border: 2px solid #6272a4;
+  border-radius: 6px;
+  color: #f8f8f2;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.embeddable-buttondown-form input[type="email"]:focus {
+  outline: none;
+  border-color: #bd93f9;
+  box-shadow: 0 0 0 3px rgba(189, 147, 249, 0.2);
+}
+
+.embeddable-buttondown-form input[type="email"]::placeholder {
+  color: #6272a4;
+}
+
+.embeddable-buttondown-form input[type="submit"] {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #bd93f9 0%, #ff79c6 100%);
+  color: #282a36;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.embeddable-buttondown-form input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(189, 147, 249, 0.4);
+}
+
+@media (max-width: 500px) {
+  .embeddable-buttondown-form {
+    flex-direction: column;
+  }
+
+  .embeddable-buttondown-form input[type="submit"] {
+    width: 100%;
+  }
+}
+
+/* ShareThis buttons - compact and side-by-side */
+.sop {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+}
+
+.sop .st-btn {
+  min-width: auto !important;
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.875rem !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sop .st-btn {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.75rem !important;
+  }
+}

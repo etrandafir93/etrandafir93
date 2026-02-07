@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>The Case of the Vanishing Schema Field - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../circular-initialization-mystery/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../tidy-first-commitments/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="the-case-of-the-vanishing-schema-field">The Case of the Vanishing Schema Field</h1>
+<p><em>Published: December 27, 2025</em></p>
+<p><a href="/#debugging"><code>#debugging</code></a> <a href="/#design"><code>#design</code></a> <a href="/#kafka"><code>#kafka</code></a></p>
+<p>This is the story of a bug that appeared and disappeared at random.
+It's about decompiled JARs, schema ownership, code generation, and the JVM classloader.</p>
+<h2 id="the-setup">The Setup</h2>
+<p>Our microservices relied on Apache Avro for serializing data through Kafka.
+At the center of it all was a simple schema: <em>MoneyAmount.avsc</em>.</p>
+<pre><code class="language-json">{
+  &quot;namespace&quot;: &quot;com.etrandafir.blog.samples&quot;,
+  &quot;type&quot;: &quot;record&quot;,
+  &quot;name&quot;: &quot;MoneyAmount&quot;,
+  &quot;fields&quot;: [
+    {&quot;name&quot;: &quot;amount&quot;, &quot;type&quot;: &quot;double&quot;},
+    {&quot;name&quot;: &quot;currency&quot;, &quot;type&quot;: &quot;string&quot;}
+  ]
+}
+</code></pre>
+<p>When we looked into how to make the change, we discovered that <em>Order.avsc</em> and <em>MoneyAmount.avsc</em> 
+lived in different repositories.
+The <em>order-api</em> library was pulling in <em>MoneyAmount.avsc</em> from its remote location 
+to generate the Java classes during build time.</p>
+<p>At some point, somebody had tried to build <em>MoneyAmount</em> as a separate JAR in a commons library.
+But that didn't work—libraries like <em>order-api</em> needed the <em>MoneyAmount.avsc</em> file itself 
+during their build process
+to generate Java classes from schemas that referenced it.
+So that initiative got abandoned pretty quick, and we kept the setup as-is.</p>
+<h2 id="the-change">The Change</h2>
+<p>One day, a requirement came in: <em>"We need the currency symbol (like $, €, £) in our Order events."</em></p>
+<p>Simple enough. We added a new field to <em>MoneyAmount.avsc</em>:</p>
+<pre><code class="language-json">{
+  &quot;namespace&quot;: &quot;com.etrandafir.blog.samples&quot;,
+  &quot;type&quot;: &quot;record&quot;,
+  &quot;name&quot;: &quot;MoneyAmount&quot;,
+  &quot;fields&quot;: [
+    {&quot;name&quot;: &quot;amount&quot;, &quot;type&quot;: &quot;double&quot;},
+    {&quot;name&quot;: &quot;currency&quot;, &quot;type&quot;: &quot;string&quot;},
+    {&quot;name&quot;: &quot;symbol&quot;, &quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;}
+  ]
+}
+</code></pre>
+<p>We updated <em>order-api</em>, rebuilt it, ran the tests locally—everything passed.
+We pushed to the test environment. Still green. </p>
+<p>We were ready for production.</p>
+<h2 id="later-that-week">Later That Week</h2>
+<p>Then, a different team integrated a completely unrelated feature. 
+They re-deployed the application to the test environment.</p>
+<p><strong>Boom.</strong></p>
+<pre><code class="language-plaintext">org.apache.avro.AvroRuntimeException: Unknown field: symbol
+</code></pre>
+<p>The application crashed during serialization. <em>MoneyAmount</em> objects suddenly
+didn't have a <em>symbol</em> field anymore.</p>
+<p><em>"It must be the new feature,"</em> someone said. We quickly checked
+—no, the new feature had nothing to do with orders.
+We rolled it back anyway. Restarted the service.</p>
+<p><strong>Everything worked again.</strong></p>
+<p>Wait, what?</p>
+<h2 id="phantom-restarts-and-forgotten-libs">Phantom Restarts and Forgotten Libs</h2>
+<p>We had a mystery on our hands. The behavior was completely non-deterministic:</p>
+<ul>
+<li>Tests were passing locally</li>
+<li>Tests were passing in CI/CD</li>
+<li>Sometimes the service worked fine after restart</li>
+<li>Sometimes it failed after restart</li>
+</ul>
+<p>We pulled the <em>order-api</em> JAR from Artifactory and decompiled it.
+There it was—the <em>MoneyAmount</em> class with the <em>symbol</em> field, exactly as expected.
+<em>"The JAR is correct"</em> - we thought. <em>"So what's going on?"</em></p>
+<p>Then someone asked: <em>"Are there any other libraries use the _MoneyAmount</em> schema?"<em>
+We checked. The _payment-api</em> library also had Avro schema generation configured.
+It pulled <em>MoneyAmount.avsc</em> and generated its own <em>MoneyAmount</em> java class.</p>
+<p><em>"When was payment-api last built?"</em> 
+We checked the timestamps. One month ago. 
+Before our schema change.</p>
+<p>The pieces started falling into place.</p>
+<h2 id="the-smoking-gun">The Smoking Gun</h2>
+<p><strong>Both <em>order-api</em> and <em>payment-api</em> were generating their own <em>MoneyAmount</em> classes
+from the same Avro schema</strong>. Since both versions of the schema had the same <em>namespace</em>,
+both generated classes had the same fully qualified name.</p>
+<p>At runtime, <strong>the JVM encountered two different versions of the same class on the classpath</strong>.
+Here's the issue, reproduced in a simplified setup.
+Which version gets loaded? Will this <em>main()</em> method work or fail?</p>
+<p><img alt="dupped classes" src="../../img/avro_dupped_classes.png" /></p>
+<p>Turns out <strong>the JVM will silently pick one and discard the other - not even a warning</strong>.
+It all depends on the classpath order.</p>
+<p>For instance, we can force loading the <em>order-api.jar</em> first
+by running the application this way:</p>
+<pre><code class="language-bash">java -cp ^
+  &quot;order-api/target/order-api-1.0-SNAPSHOT.jar;^
+  payment-api/target/payment-api-1.0-SNAPSHOT.jar;^
+  dummy-app/target/dummy-app-1.0-SNAPSHOT.jar&quot; ^
+  com.etrandafir.blog.app.DummyApp
+</code></pre>
+<p>This will result in the happy path we were usually seeing,
+in our example, the <em>toString()</em> of the <em>MoneyAmount</em> object:</p>
+<pre><code class="language-plaintext">MoneyAmount[amount=100.50, currency=USD, currencySymbol=$]
+</code></pre>
+<p>On the other hand, we can reverse the order of the JARs,
+the <em>main()</em> method will fail to create a <em>MoneyAmount</em> instance.
+It'll say it's not aware of a <em>MoneyAmount</em> constructor accepting 
+three parameters (amount, currency, symbol),
+it only knows the old two-parameter constructor:</p>
+<pre><code class="language-plaintext">Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: 
+    'void com.etrandafir.blog.samples.MoneyAmount.&lt;init&gt;(java.math.BigDecimal, java.lang.String, java.lang.String)'
+        at com.etrandafir.blog.app.DummyApp.main(DummyApp.java:10)
+</code></pre>
+<p>The JAR ordering was effectively random during service startup, 
+which explained the non-deterministic behavior.</p>
+<h2 id="what-went-wrong">What Went Wrong</h2>
+<p>We had violated a fundamental principle: <strong>a generated class should have exactly one owner.</strong> 
+Our setup allowed multiple libraries to independently generate the same class from the same schema. 
+When the schema evolved, each library built its own version at different times, 
+creating conflicting definitions on the classpath. 
+The JVM's classloader picked one version at random, making the behavior completely non-deterministic.</p>
+<p>But there's a deeper issue here.
+<strong>In Domain-Driven Design terms, <em>payment-api</em> and <em>order-api</em> represent different bounded contexts.
+Each context should own its data models.</strong>
+If both contexts needed a money concept, each should have declared its own <em>MoneyAmount</em> schema
+—even if they looked similar.
+Instead, we had a shared schema with no clear ownership, 
+living in a separate repository that neither context truly controlled.</p>
+<h2 id="how-we-could-have-caught-it-earlier">How We Could Have Caught It Earlier</h2>
+<p>The service in our test environment was rarely restarted, but our CI/CD pipeline ran tests constantly.
+<strong>If we had integration tests that actually went through the Kafka layer</strong>, 
+we would have caught this much earlier.</p>
+<p>Using tools like Testcontainers or Embedded Kafka would have surfaced the issue.
+Sure, this test might have produced some false negatives,
+but it would have been failing often enough for us to investigate.</p>
+<p><strong>Another tool that could have saved us is the Maven Enforcer Plugin with 
+its <a href="https://www.mojohaus.org/extra-enforcer-rules/banDuplicateClasses.html"><em>banDuplicateClasses</em></a> rule.</strong>
+This plugin scans your dependencies at build time and fails the build 
+if it detects multiple JARs providing the same class. 
+If we had configured it in our projects, the build would have failed immediately, 
+preventing the duplicate <em>MoneyAmount</em> classes from ever reaching our test environment.</p>
+<p>Let's add the Maven Enforcer Plugin to our sample project's <em>pom.xml</em>:</p>
+<pre><code class="language-xml">&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.6.2&lt;/version&gt;
+      &lt;executions&gt;
+        &lt;execution&gt;
+          &lt;id&gt;enforce-ban-duplicate-classes&lt;/id&gt;
+          &lt;goals&gt;
+            &lt;goal&gt;enforce&lt;/goal&gt;
+          &lt;/goals&gt;
+          &lt;configuration&gt;
+            &lt;rules&gt;
+              &lt;banDuplicateClasses&gt;
+                &lt;findAllDuplicates&gt;true&lt;/findAllDuplicates&gt;
+                &lt;ignoreWhenIdentical&gt;true&lt;/ignoreWhenIdentical&gt;
+              &lt;/banDuplicateClasses&gt;
+            &lt;/rules&gt;
+            &lt;fail&gt;true&lt;/fail&gt;
+          &lt;/configuration&gt;
+        &lt;/execution&gt;
+      &lt;/executions&gt;
+      &lt;dependencies&gt;
+        &lt;dependency&gt;
+          &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+          &lt;artifactId&gt;extra-enforcer-rules&lt;/artifactId&gt;
+          &lt;version&gt;1.11.0&lt;/version&gt;
+        &lt;/dependency&gt;
+      &lt;/dependencies&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p>After configuring this plugin, any attempt to build a project with duplicate classes would fail immediately.
+Let's try it out in our sample project:</p>
+<pre><code class="language-plaintext">[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for duplicate-classes 1.0-SNAPSHOT:
+[INFO] 
+[INFO] duplicate-classes .................................. SUCCESS [  0.186 s]
+[INFO] payment-api ........................................ SUCCESS [  0.853 s]
+[INFO] order-api .......................................... SUCCESS [  0.083 s]
+[INFO] dummy-app .......................................... FAILURE [  2.575 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.778 s
+[INFO] Finished at: 2025-12-28T17:19:12+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.6.2:enforce (enforce-ban-duplicate-classes) on project dummy-app: 
+[ERROR] Rule 0: org.codehaus.mojo.extraenforcer.dependencies.BanDuplicateClasses failed with message:
+[ERROR] Duplicate classes found:
+[ERROR] 
+[ERROR]   Found in:
+[ERROR]     com.etrandafir.blog:payment-api:jar:1.0-SNAPSHOT:compile
+[ERROR]     com.etrandafir.blog:order-api:jar:1.0-SNAPSHOT:compile
+[ERROR]   Duplicate classes:
+[ERROR]     com/etrandafir/blog/samples/MoneyAmount.class
+</code></pre>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<ul>
+<li>Generated code should have exactly one owner</li>
+<li>Avoid committing generated files—generate during build</li>
+<li>Allow each bounded context to define its own models, even if they look similar</li>
+<li>Unit tests aren't enough</li>
+</ul>
+<p>This bug taught us that architectural mistakes don't always fail immediately. 
+They lie dormant, waiting for the perfect storm: a schema change, a deployment, 
+a classloader race condition.</p>
+<p>You can play with a demo project and try the Maven plugin yourself at 
+<a href="https://github.com/etrandafir93/dupped_java_classes/tree/main">github.com/etrandafir93/dupped_java_classes</a>.</p></p>
+    </article>
+</section>
+
+  <!-- Newsletter Subscription -->
+  <div style="margin-top: 3rem; padding: 2rem 7px; text-align: center;">
+    <p style="margin-bottom: 1.5rem;">
+      Subscribe to my monthly dev log.<br>
+      Articles on writing code with intentionality.<br>
+      No AI-generated fluff!
+    </p>
+
+    <form
+      id="newsletter-form-footer"
+      class="embeddable-buttondown-form"
+      style="margin: 0 auto;"
+    >
+      <input type="email" name="email" class="bd-email-footer" placeholder="Enter your email" required />
+      <input type="submit" value="Subscribe" />
+    </form>
+    <div id="newsletter-message-footer" style="display: none; margin-top: 10px; padding: 10px; border-radius: 6px;"></div>
+  </div>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../javascripts/newsletter.js" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>

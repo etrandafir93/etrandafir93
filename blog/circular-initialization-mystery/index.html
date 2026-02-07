@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>The Case of the Sometimes-Null Constant - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../micrometer-assertions-contribution/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../avro-duplicate-class-mystery/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="the-case-of-the-sometimes-null-constant">The Case of the Sometimes-Null Constant</h1>
+<p><em>Published: January 31, 2026</em></p>
+<p><a href="/#oss"><code>#oss</code></a> <a href="/#debugging"><code>#debugging</code></a> </p>
+<p>This is the story of a flaky test that was passing for all the wrong reasons.</p>
+<p>It's about null comparisons, circular dependencies, class initialization order,
+and how the JVM can surprise you when you least expect it.</p>
+<h2 id="the-crime-scene">The Crime Scene</h2>
+<p>I came across an <a href="https://github.com/micrometer-metrics/micrometer/issues/6946">issue</a> 
+in the <a href="https://github.com/micrometer-metrics/micrometer">Micrometer</a> metrics library 
+about flaky tests in <em>NoopObservationRegistryTests</em>.</p>
+<p>The tests were randomly failing with a cryptic assertion error:</p>
+<pre><code class="language-plaintext">java.lang.AssertionError:
+Expecting actual:
+  null
+and:
+  io.micrometer.observation.NoopObservation$NoopScope@2f08c4b
+to refer to the same object
+</code></pre>
+<p>The tests were using AssertJ's <em>isSameAs()</em> to verify that certain fields were pointing to the same singleton instance. 
+Most times they passed. But every once in a while they failed. Classic flaky test behavior.</p>
+<p><em>"It must be a concurrency issue,"</em> I thought. <em>"Or maybe some shared state between tests?"</em></p>
+<p>But as I dug deeper, I realized something far more interesting was happening.</p>
+<h2 id="finding-a-lead">Finding a Lead</h2>
+<p>Here's a simplified version of what the test was doing:</p>
+<pre><code class="language-java">@Test
+void shouldNotRespectScopesIfNoopRegistryIsUsed() {
+    ObservationRegistry registry = ObservationRegistry.NOOP;
+    Observation observation = Observation.start(&quot;foo&quot;, registry);
+
+    try (Observation.Scope scope = observation.openScope()) {
+        then(registry.getCurrentObservationScope())
+            .isSameAs(Observation.Scope.NOOP);
+    }
+}
+</code></pre>
+<p>The assertion was checking that the current scope was the same instance as <em>Observation.Scope.NOOP</em>
+—a public static final singleton.</p>
+<p>I set a breakpoint right before the assertion in one of the passing test runs.
+Both the actual and expected values were <em>null</em>
+—that's why the tests were passing most of the time!</p>
+<p>The test was effectively doing:</p>
+<pre><code class="language-java">then(null).isSameAs(null);
+</code></pre>
+<p>When both were <em>null</em>, the test passed.
+But sometimes, very rarely, the <em>Observation.Scope.NOOP</em> wasn't null
+—and the test failed.</p>
+<p>So, <em>getCurrentObservationScope()</em> was always returning <em>null</em>.
+<strong>The flaky test wasn't revealing a bug in the test logic. It was revealing a bug in the production code.</strong></p>
+<p><br/>
+That's good to know, it can be dealt with in a different issue.
+But, for me, the more interesting question was: </p>
+<p><strong><em>How could Scope.NOOP be null as well?</em> 
+It's a singleton static final field - is this even possible?</strong></p>
+<p><img alt="But Why?" src="../../img/micrometer-cricular-ref-1.png" /></p>
+<h2 id="following-the-trail">Following the Trail</h2>
+<p>Let's take a closer look at the simplified code snippet:</p>
+<pre><code class="language-java">interface Scope {
+    Scope NOOP = NoopScope.INSTANCE;
+    // ...
+}
+
+class NoopScope implements Scope {
+    static final Scope INSTANCE = new NoopScope();
+    // ...
+}
+</code></pre>
+<p>Do you notice anything peculiar? 
+Take a moment to think about it.</p>
+<details>
+<summary>(see the answer)</summary>
+
+There's a circular dependency during class initialization:
+<br/>
+<ul>
+    <li> <i>Scope.NOOP</i> points to <i>NoopScope.INSTANCE</i> </li>
+    <li> <i>NoopScope</i> implements <i>Scope</i> </li>
+</ul>
+</details>
+
+<p><br/>
+When the JVM initializes <em>NoopScope.INSTANCE</em> first:</p>
+<ul>
+<li>It loads the <em>NoopScope</em> class</li>
+<li>Since <em>NoopScope</em> implements <em>Scope</em>, it loads the <em>Scope</em> interface</li>
+<li>The interface tries to initialize <em>Scope.NOOP</em> by referencing <em>NoopScope.INSTANCE</em></li>
+<li>But <em>NoopScope.INSTANCE</em> isn't fully initialized yet—it's still being created!</li>
+<li><em>Scope.NOOP</em> ends up as <em>null</em></li>
+</ul>
+<p>The initialization order depended on which class the JVM happened to load first. 
+Hence, the flaky behavior.</p>
+<h2 id="the-smoking-gun">The Smoking Gun</h2>
+<p>I was very surprised by this behavior, and I needed to be absolutely sure.</p>
+<p>Turns out even a plain-old <em>System.out.println()</em> would be enough to change the class initialization order,
+and reproduce the issue reliably:</p>
+<pre><code class="language-java">@Test
+void test() {
+    // this sysout will force initializing NoopScope.INSTANCE first
+    System.out.println(NoopScope.INSTANCE);
+
+    then(Scope.NOOP).isNotNull(); // FAILS
+}
+</code></pre>
+<p>Of course, we'll run this test in isolation to avoid having other tests interfere with the order of loading the classes.</p>
+<p>Bingo! <strong>By forcing the classloader to initialize <em>NoopScope</em> first, 
+we could reliably make <em>Scope.NOOP</em> become <em>null</em> every single time.</strong></p>
+<p>Comment out that first <em>println()</em> and run again
+—the behavior changes completely! The test passes.</p>
+<h2 id="the-solution">The Solution</h2>
+<p>I tried several approaches to fix this, but they all broke backward compatibility. 
+Needless to say, that was not an option for a widely-used library such as Micrometer.</p>
+<p>The public API couldn't change—<em>Scope.NOOP</em> needed to remain a public static final field.</p>
+<p>That's when the Micrometer team came up with an ingenious solution: 
+<strong>replace the concrete class references with anonymous inner classes</strong>.</p>
+<p>Of course, the full implementation is more complex,
+feel free to check out <a href="https://github.com/micrometer-metrics/micrometer/pull/7105">all the changes</a> here.
+But, for now, let's stick to our simplified code sample.</p>
+<p>Instead of:</p>
+<pre><code class="language-java">interface Scope {
+    Scope NOOP = NoopScope.INSTANCE;  // Circular reference!
+}
+</code></pre>
+<p>They used:</p>
+<pre><code class="language-java">interface Scope {
+    // Anonymous class - no circular reference possible
+    Scope NOOP = new Scope() {
+        @Override
+        public Observation getCurrentObservation() {
+            // ... implementation ...
+        }
+        // ... other methods...
+    };
+}
+</code></pre>
+<p>The anonymous inner class is part of the <em>Scope</em> interface's initialization, 
+so there's no external dependency that could cause a circular initialization. </p>
+<p><strong>Simply put, the <em>Scope</em> interface still has a <em>public static Scope</em> field,
+but we removed the references to any concrete implementation.</strong></p>
+<h2 id="how-to-catch-this-early">How to Catch This Early</h2>
+<p>Apart from fixing the bug, we need to make sure this kind of issue wouldn't happen again in the future.</p>
+<p>Turns out there's an <a href="https://errorprone.info/">ErrorProne</a>
+check specifically for this:
+<a href="https://errorprone.info/bugpattern/ClassInitializationDeadlock"><em>ClassInitializationDeadlock</em></a>.
+This static analysis rule can detect circular initialization dependencies at compile time.</p>
+<p>Adding it to the build configuration:</p>
+<pre><code class="language-java">errorprone {
+    check(&quot;ClassInitializationDeadlock&quot;, CheckSeverity.ERROR)
+}
+</code></pre>
+<p>Now the build would fail immediately if anyone introduced this pattern again.</p>
+<p>In a different <a href="https://github.com/micrometer-metrics/micrometer/pull/7021">PR</a>,
+this was integrated, too, into Micrometer's build process.</p>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<ul>
+<li>Flaky tests are sometimes symptoms of real bugs</li>
+<li>Circular dependencies between static fields can create subtle, non-deterministic bugs</li>
+<li><em>ErrorProne</em> and other static analysis tools can catch these issues before they reach production</li>
+</ul>
+<p>You can see the full investigation and discussion in the 
+<a href="https://github.com/micrometer-metrics/micrometer/issues/6946">original issue</a>.</p></p>
+    </article>
+</section>
+
+  <!-- Newsletter Subscription -->
+  <div style="margin-top: 3rem; padding: 2rem 7px; text-align: center;">
+    <p style="margin-bottom: 1.5rem;">
+      Subscribe to my monthly dev log.<br>
+      Articles on writing code with intentionality.<br>
+      No AI-generated fluff!
+    </p>
+
+    <form
+      id="newsletter-form-footer"
+      class="embeddable-buttondown-form"
+      style="margin: 0 auto;"
+    >
+      <input type="email" name="email" class="bd-email-footer" placeholder="Enter your email" required />
+      <input type="submit" value="Subscribe" />
+    </form>
+    <div id="newsletter-message-footer" style="display: none; margin-top: 10px; padding: 10px; border-radius: 6px;"></div>
+  </div>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../javascripts/newsletter.js" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>

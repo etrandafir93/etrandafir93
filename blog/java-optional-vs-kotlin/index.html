@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>Java's Optional vs Kotlin: Side by Side - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../less-mocks-more-functions/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../lombok-lazy-oop/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="javas-optional-vs-kotlin-side-by-side">Java's Optional vs Kotlin: Side by Side</h1>
+<p><em>Published: July 16, 2023</em></p>
+<p><code>#java</code> <code>#kotlin</code> <a href="/#functional-programming"><code>#functional programming</code></a></p>
+<p>In a previous article, we compared Java's syntax to
+<a href="../clojure-threading/">Clojure's threading operators</a>.
+Today, we'll explore another comparison:
+how Java's Optional and Kotlin's nullable types handle null values.</p>
+<p>It's worth noting a fundamental philosophical difference between these approaches:
+<strong>Kotlin treats nullable types as first-class citizens</strong> built directly into the type system.
+On the other hand, <strong>Java's Optional is a wrapper class</strong> added later to address nullability concerns.</p>
+<p>In this short article, we'll explore the similarities and differences
+between the two approaches, highlighting their benefits and use cases.</p>
+<p><img alt="Photo by Uriel Soberanes on Unsplash" src="../../img/java-vs-kotlin.png" /></p>
+<h2 id="getting-the-value">Getting the Value</h2>
+<p>Let's start by comparing how Java's <em>Optional</em> and Kotlin handle value extraction or exception throwing.
+In Java, the <em>Optional</em> class initially provided the <em>get()</em> method for this purpose,
+but later introduced <em>orElseThrow()</em> to emphasize the possibility of an exception:</p>
+<pre><code class="language-java">// java
+Optional&lt;String&gt; optionalValue = Optional.of(&quot;dummy&quot;);
+String value = optionalValue.orElseThrow();
+</code></pre>
+<p>In contrast, Kotlin utilizes the double bang (<code>!!</code>) operator for similar functionality:</p>
+<pre><code class="language-kotlin">// kotlin
+val optionalValue: String? = &quot;dummy&quot;
+val value: String = optionalValue!!
+</code></pre>
+<p>The API of the <em>Optional</em> class allows us to provide a custom exception if the object is empty.
+Let's look at the <em>orElseThrow(Supplier<Throwable>)</em> and its Kotlin equivalent,
+the Elvis Operator (<code>?:</code>):</p>
+<pre><code class="language-kotlin">// java
+Optional&lt;String&gt; optionalValue = Optional.empty();
+String value = optionalValue.orElseThrow(
+    () -&gt; new IllegalStateException(&quot;Oupps!&quot;));
+
+
+// kotlin
+val optionalValue: String? = null
+val value = optionalValue 
+    ?: throw IllegalStateException(&quot;Oupps!&quot;)
+</code></pre>
+<h2 id="default-values">Default Values</h2>
+<p>Kotlin's "Elvis" operator also allows us to provide a default value
+that will be used if the variable is null. In Java, this functionality
+can be achieved through the method <em>orElse()</em>:</p>
+<pre><code class="language-kotlin">// java
+Optional&lt;String&gt; optionalValue = Optional.empty();
+String value = optionalValue.orElse(&quot;default&quot;);
+
+// kotlin
+val optionalValue: String? = null
+val value = optionalValue ?: &quot;default&quot;
+</code></pre>
+<h2 id="map-and-flatmap">Map() and FlatMap()</h2>
+<p>In a future article, we'll discuss how Java's <em>Optional</em> embraces the concepts of
+<strong>functors</strong> and <strong>monads</strong> through the implementation of its <em>map()</em> and <em>flatMap()</em>.
+These methods allow us to transform the value inside the <em>Optional</em>,
+without touching the "container" itself. </p>
+<pre><code class="language-java">// java
+Optional&lt;String&gt; optionalValue = Optional.of(&quot;dummy&quot;);
+Optional&lt;Integer&gt; length = optionalValue.map(String::length);
+
+Optional&lt;Account&gt; account = Optional.ofNullable(dummyAccount);
+Optional&lt;Address&gt; address = account.flatMap(Account::address);
+Optional&lt;String&gt; street = address.flatMap(Address::street);
+</code></pre>
+<p>On the other hand, in Kotlin, this will be achieved through the method <em>let()</em>:</p>
+<pre><code class="language-kotlin">// kotlin
+val optionalValue: String? = &quot;dummy&quot;
+val length: Int? = optionalValue?.let { it.length }
+
+val account: Account? = dummyAccount
+val address: Address? = account?.let { it.address }
+val street: String? = address?.let { it.street }
+</code></pre>
+<p>While <em>let()</em> works, it's not the most idiomatic Kotlin.
+When traversing an object with multiple nullable fields and leveraging
+the power of <em>map()</em> or <em>flatMap()</em>, Kotlin provides more concise approach, via <code>?.</code>:</p>
+<pre><code class="language-kotlin">// kotlin
+val street: String = account?.address?.street?: &quot;unkown&quot;
+
+// java
+String street = Optional.ofNullable(account)
+    .flatMap(Account::address)
+    .flatMap(Address::street)
+    .orElse(&quot;unkown&quot;);
+</code></pre>
+<h2 id="using-the-value-if-present">Using the Value if Present</h2>
+<p>Lastly, <em>Optional</em>'s <em>ifPresent()</em> allows us to provide a Consumer function that
+will be executed only if the value is present.
+Moreover, the method <em>ifPresentOrElse()</em> allows us to provide an additional function
+that will be invoked if the object is empty. </p>
+<pre><code class="language-java">// java
+Optional&lt;String&gt; optionalValue = Optional.of(&quot;dummy&quot;);
+optionalValue.ifPresent(value -&gt; System.out.println(value));
+
+optionalValue.ifPresentOrElse(
+    value -&gt; System.out.println(value),
+    () -&gt; System.out.println(&quot;Empty&quot;)
+);
+</code></pre>
+<p>Let's see how we can achieve the same functionality in Kotlin:</p>
+<pre><code class="language-kotlin">// kotlin
+val optionalValue: String? = &quot;dummy&quot;
+optionalValue?.let { println(it) }
+
+optionalValue
+    ?.let { println(it) } 
+    ?: run { println(&quot;Empty&quot;) }
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>In conclusion, using Kotlin operators like <code>?.</code> and <code>?:</code> enable cleaner 
+and more concise code for handling nullable values. </p>
+<p>While more verbose, Java's Optional provides an explicit approach to null-handling
+that integrates with existing code, addressing nullability concerns
+without breaking backwards compatibility.</p>
+<p>The key takeaway is that both languages recognize the importance of explicit null handling,
+and provide robust mechanisms to prevent null pointer exceptions 
+while making the code's intent clear to other developers.</p></p>
+    </article>
+</section>
+
+  <!-- Newsletter Subscription -->
+  <div style="margin-top: 3rem; padding: 2rem 7px; text-align: center;">
+    <p style="margin-bottom: 1.5rem;">
+      Subscribe to my monthly dev log.<br>
+      Articles on writing code with intentionality.<br>
+      No AI-generated fluff!
+    </p>
+
+    <form
+      id="newsletter-form-footer"
+      class="embeddable-buttondown-form"
+      style="margin: 0 auto;"
+    >
+      <input type="email" name="email" class="bd-email-footer" placeholder="Enter your email" required />
+      <input type="submit" value="Subscribe" />
+    </form>
+    <div id="newsletter-message-footer" style="display: none; margin-top: 10px; padding: 10px; border-radius: 6px;"></div>
+  </div>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../javascripts/newsletter.js" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>

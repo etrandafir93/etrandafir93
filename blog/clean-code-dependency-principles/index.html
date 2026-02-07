@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>Uncle Bob's Advice on Stability and Abstractions - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../lombok-lazy-oop/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a 
+                        class="btn-preview drac-btn drac-text-white--hover disabled" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="uncle-bobs-advice-on-stability-and-abstractions">Uncle Bob's Advice on Stability and Abstractions</h1>
+<p><em>Published: December 13, 2025</em></p>
+<p><a href="/#design"><code>#design</code></a></p>
+<p>Have you ever worked on a codebase where changing one module 
+triggers a cascade of changes across the entire system? 
+Or where circular dependencies make it nearly impossible to understand 
+which component is responsible for what?</p>
+<p>Uncle Bob's <a href="https://cleancoders.com/">Clean Code</a> series addresses these issues with some
+fundamental principles for managing dependencies in software systems. </p>
+<p>In this short article, we'll discuss the incoming and outgoing dependencies of our software,
+and classify our components as <em>stable</em> or <em>unstable</em>.
+Then, we'll learn that stable component should be more <em>abstract</em>, 
+whereas unstable components can remain <em>concrete</em>.</p>
+<h2 id="stable-vs-unstable-components">Stable vs Unstable Components</h2>
+<p>Let's imagine you built a small library for parsing CSV files. 
+At first, only your team uses it - it's relatively <em>unstable</em>. 
+You can make breaking changes without too much hassle. </p>
+<p>But then, you open-source it and it suddenly becomes super popular.
+Now thousands of projects depend on it, which makes it very <em>stable</em>.
+It's stable because you cannot afford to easily make breaking changes to it anymore.</p>
+<p><img alt="stable vs unstable component" src="../../img/abstractions_stable_comp.png" /></p>
+<p>So, we can say that <strong>a component is stable if it has many components depending on it,
+while depending on few others itself.</strong> 
+On the other hand, an unstable component has many efferent dependencies.</p>
+<pre><code class="language-plaintext">    According to Uncle Bob's Stable Dependencies Principle, 
+    a component should only depend on components that are more stable than itself.
+</code></pre>
+<p>For instance, for your CSV parser library with thousands of users,
+it's ok to depend on a well-established date/time library which is even more popular.
+On the other hand, it would be a bad idea to add a dependency on a small utility library 
+that is still evolving rapidly.</p>
+<h2 id="abstract-vs-concrete-components">Abstract vs Concrete Components</h2>
+<p>Similar to stability, abstraction is not "boolean" either: 
+A component does not have to be either <em>abstract</em> or <em>concrete</em>. 
+The more abstract classes and interfaces a component has 
+(compared to the total number of public classes), the more abstract it is.</p>
+<pre><code class="language-plaintext">    The Stable Abstractions Principle tells us that 
+    the more stable a component is, the more abstract it should be.
+</code></pre>
+<p>Simply put, our popular CSV parser with a lot of users should be designed
+with abstraction in mind. 
+This will allow us to further extend it without introducing breaking changes.
+<strong>Our CSV parser is stable and abstract!</strong></p>
+<p>Let's imagine we also have a UI application that fetches data from multiple 
+backend services and displays it to the user.
+Most probably, this application is going to have many outgoing dependencies.</p>
+<p>Moreover, it will enable the users to perform some operations 
+that are very specific to our system. 
+Therefore, we can say that <strong>our UI application is unstable and concrete.</strong></p>
+<p><img alt="abstract vs concrete components" src="../../img/abstractions_stable_graph.png" /></p>
+<p>If we have a component that is unstable (few others depend on it &amp; it has many other dependencies),
+there is no point in keeping it abstract - it'll be useless.</p>
+<p>On the other hand, a component that's stable (other modules depend on it)
+needs to be abstract - otherwise maintaining without breaking users will be painful.</p>
+<p>Consequently, we have to keep the proportions between stability and abstraction, 
+aiming for the blue area of the graph.</p>
+<h2 id="takeaways">Takeaways</h2>
+<p>These principles might sound theoretical, 
+but they've changed how I approach component design.</p>
+<p>It's easy to go on autopilot (or copilot) when building new features -
+creating abstractions "just in case" or avoiding them entirely. 
+Understanding stability and abstraction helps us make intentional decisions instead.</p>
+<p>Next time you're designing a component, ask yourself: 
+<strong>How stable is this? How stable should it be?</strong> 
+The answers will guide you toward the right level of abstraction -
+not too much, not too little.</p></p>
+    </article>
+</section>
+
+  <!-- Newsletter Subscription -->
+  <div style="margin-top: 3rem; padding: 2rem 7px; text-align: center;">
+    <p style="margin-bottom: 1.5rem;">
+      Subscribe to my monthly dev log.<br>
+      Articles on writing code with intentionality.<br>
+      No AI-generated fluff!
+    </p>
+
+    <form
+      id="newsletter-form-footer"
+      class="embeddable-buttondown-form"
+      style="margin: 0 auto;"
+    >
+      <input type="email" name="email" class="bd-email-footer" placeholder="Enter your email" required />
+      <input type="submit" value="Subscribe" />
+    </form>
+    <div id="newsletter-message-footer" style="display: none; margin-top: 10px; padding: 10px; border-radius: 6px;"></div>
+  </div>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../javascripts/newsletter.js" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>

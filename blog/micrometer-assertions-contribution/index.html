@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>My First Contribution to Micrometer - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../.."
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../circular-initialization-mystery/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="my-first-contribution-to-micrometer">My First Contribution to Micrometer</h1>
+<p><em>Published: January 13, 2026</em></p>
+<p><a href="/#testing"><code>#testing</code></a> <a href="/#oss"><code>#oss</code></a> <code>#observability</code></p>
+<p>I'm excited to share that my first contribution to the Micrometer project has been merged 
+and is now available in the <a href="https://github.com/micrometer-metrics/micrometer/releases">1.17.0-M1 pre-release</a>!</p>
+<p>The contribution adds AssertJ-style assertions for various meter types,
+making metric testing fun.</p>
+<h2 id="testing-without-micrometer-test">Testing Without <em>micrometer-test</em></h2>
+<p>Recently, I wrote a Baeldung article on <a href="https://www.baeldung.com/micrometer-testing">Testing with Micrometer</a>,
+where we went over a few of the basics.</p>
+<p>Without Micrometer's test support module, 
+we can rely on the <em>MeterRegistry</em> to fetch various meters and assert their values manually.</p>
+<p>For example, this is how we could verify that a counter has been incremented correctly:</p>
+<pre><code class="language-java">class MicrometerUnitTest {
+
+  MeterRegistry meterRegistry = new SimpleMeterRegistry();
+  FooService fooService = new FooService(meterRegistry);
+
+  @Test
+  void whenFooIsCalled_thenCounterIsIncremented() {
+    fooService.foo();
+    fooService.foo();    
+    fooService.foo();
+
+    double invocations = meterRegistry.get(&quot;foo.count&quot;)
+      .counter()
+      .count();
+
+    assertThat(invocations)
+      .isEqualTo(3);
+  }
+
+}
+</code></pre>
+<h2 id="my-contribution-meter-assertions">My Contribution - Meter Assertions</h2>
+<p>The good news is that Micrometer provides a dedicated test support module:</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.micrometer&lt;/groupId&gt;
+    &lt;artifactId&gt;micrometer-test&lt;/artifactId&gt;
+    &lt;version&gt;1.17.0-M1&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>The <code>micrometer-test</code> was available for some time, but it was only covering a few basic assertions,
+such as checking the existence of a meter. </p>
+<p>With my contribution, we can now use the same fluent-api we know and love, for asserting meter values:</p>
+<pre><code class="language-java">@Test
+void whenFooIsCalled_thenCounterIsIncremented() {
+  fooService.foo();
+  fooService.foo();    
+  fooService.foo();
+
+  MeterRegistryAssert.assertThat(meterRegistry)
+    .counter(&quot;foo.count&quot;)
+    .hasCount(3);
+}
+</code></pre>
+<p><em>Counters, Timers, Gauges</em> will have different assertions available.
+For instance, when it comes to verifying <em>Timers</em>, 
+we'll be able to check things like the <em>mean()</em> time, <em>max()</em> time, and so on:</p>
+<p><img alt="timer asserts.png" src="../../img/micrometer-assertions.png" /></p>
+<h2 id="navigating-through-the-api">Navigating Through the API</h2>
+<p>Looking at the <em>Timer</em> assertions example above,
+we'll notice there's no <em>hasMeanTime()</em> or <em>hasMaxTime()</em> method.
+This is intentional: hard-coded <em>Duration</em> values can lead to flaky tests:</p>
+<pre><code class="language-java">MeterRegistryAssert.assertThat(meterRegistry)
+  .timer(&quot;foo&quot;)
+  .hasMeanTime(Duration.ofMillis(500)) // &lt;-- this looks flaky!
+</code></pre>
+<p>Instead of providing something like this, 
+the API allows us to use <em>mean()</em>,
+which enables a large variety of Duration-specific assertions,
+such as <em>isBetween()</em>, <em>isLessThan()</em>, <em>isGreaterThan()</em>, <em>isCloseTo()</em> ...etc.:</p>
+<p><img alt="duration asserts.png" src="../../img/micrometer-assertions-2.png" /></p>
+<h2 id="other-meter-types">Other Meter Types</h2>
+<p>For specialized meters like <em>DistributionSummary</em> or <em>FunctionCounter</em>,
+we can use the generic <em>meter()</em> API:</p>
+<pre><code class="language-java">@Test
+void shouldAssertOnMeasures() {
+  DistributionSummary meter = DistributionSummary
+    .builder(&quot;foo&quot;)
+    .register(simpleMeterRegistry);
+
+  meter.record(10.0);
+  meter.record(20.0);
+
+  MeterRegistryAssert.assertThat(meterRegistry)
+    .meter(&quot;foo&quot;)
+    .hasMeasurement(Statistic.COUNT, 2.0)
+    .hasMeasurement(Statistic.TOTAL, 30.0)
+    .hasMeasurement(Statistic.MAX, 20.0);
+}
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>I'm looking forward to seeing how the community uses these assertions 
+and to contributing more to the Micrometer project in the future.</p>
+<p>You can check out the full pull request at 
+<a href="https://github.com/micrometer-metrics/micrometer/pull/6870">github.com/micrometer-metrics/micrometer/pull/6870</a>.</p>
+<p>Big kudos to <a href="https://github.com/shakuzen">@shakuzen</a> 
+and <a href="https://github.com/marcingrzejszczak">@marcingrzejszczak</a>
+for reviewing and guiding me through the contribution process!</p></p>
+    </article>
+</section>
+
+  <!-- Newsletter Subscription -->
+  <div style="margin-top: 3rem; padding: 2rem 7px; text-align: center;">
+    <p style="margin-bottom: 1.5rem;">
+      Subscribe to my monthly dev log.<br>
+      Articles on writing code with intentionality.<br>
+      No AI-generated fluff!
+    </p>
+
+    <form
+      id="newsletter-form-footer"
+      class="embeddable-buttondown-form"
+      style="margin: 0 auto;"
+    >
+      <input type="email" name="email" class="bd-email-footer" placeholder="Enter your email" required />
+      <input type="submit" value="Subscribe" />
+    </form>
+    <div id="newsletter-message-footer" style="display: none; margin-top: 10px; padding: 10px; border-radius: 6px;"></div>
+  </div>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../javascripts/newsletter.js" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>

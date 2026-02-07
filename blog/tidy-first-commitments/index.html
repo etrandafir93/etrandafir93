@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>'Tidy First?' and my Post-Reading Commitments - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../avro-duplicate-class-mystery/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../clojure-threading/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="tidy-first-and-my-post-reading-commitments">'Tidy First?' and my Post-Reading Commitments</h1>
+<p><em>Published: April 11, 2024</em></p>
+<p><a href="/#design"><code>#design</code></a> <a href="/#books"><code>#books</code></a></p>
+<p>You know that good feeling when you come across a piece of code that's concise 
+and cohesive? The code that allows you to focus on its purpose, and it 
+doesn't have logic scattered all over the place?</p>
+<p>That's the same feeling I've got reading Kent Beck's 
+<a href="https://www.oreilly.com/library/view/tidy-first/9781098151232/">"Tidy First?"</a>. 
+It's a remarkably succinct book, spanning just 100 pages, divided into three sections,
+each comprised of a handful of brief chapters.</p>
+<p>Some chapters are no longer than a single page, yet they're incredibly rich in content. 
+At times, I found myself revisiting certain chapters to fully absorb their insights.</p>
+<p><img alt="img" src="../../img/tidy-first_book.jpeg" /></p>
+<h2 id="small-improvements-with-big-impact">Small Improvements with Big Impact</h2>
+<p>The first section of the book explains what <em>"tidyings"</em> are, and provides some 
+practical examples for 15 of these small improvements. In essence, we can think of 
+"tidyings" as the younger relatives of "refactorings".</p>
+<p>Some tidyings can be as simple as extracting explanatory variables and helper functions. 
+You'll probably be familiar with these techniques, and your IDE should already have 
+shortcuts for pretty much all of them. However, reading through this section 
+will give you a feeling of the size and granularity of these changes. 
+This will help you better understand the second section about rhythm and pace.</p>
+<p>Long story short, the concept of "refactoring" got out of hand a bit, and 
+we tend to commit big batches of structural changes and justify them as refactoring.
+By contrast, <strong>tidyings are small, incremental improvements</strong> that don't 
+require a deep understanding of the codebase.</p>
+<h2 id="structural-and-behavioral-changes">Structural and Behavioral Changes</h2>
+<p>In the second part of the book, Kent Beck discusses the <strong>two main types of 
+software changes</strong>: those related to <em>structure</em> and those related to <em>behavior</em>. 
+He emphasizes categorizing changes into these groups and advocates for 
+<strong>separate pull requests for structural and behavioral modifications</strong>.</p>
+<p>While many technical books offer rigid sets of rules to adhere to, 
+Tidy First? presents a set of questions and ideas that will serve as a guide 
+to aid you in making the best decisions for your particular use case.</p>
+<p>For instance, the book doesn't provide a definitive answer regarding the 
+timing of structural changes: </p>
+<ul>
+<li>
+<p>Should they precede the implementation of the required feature? - <em>Possible</em>. </p>
+</li>
+<li>
+<p>Should we tidy the code after implementing a new feature? - <em>Maybe</em>. </p>
+</li>
+<li>
+<p>Should we tidy the code at all? - <em>it depends</em>.</p>
+</li>
+</ul>
+<h2 id="changers-and-observers">Changers and Observers</h2>
+<pre><code class="language-plaintext">    &quot;Software design is an exercise in human relationships&quot;
+        - Kent Beck
+</code></pre>
+<p>The last section of the book delves into more theoretical concepts, 
+like <em>coupling</em> and <em>cohesion</em>. Another interesting discussion in 
+this section analyzes the two main attributes that make the software valuable:
+<strong>what it can do</strong> and <strong>what it can become</strong>. 
+Needless to say, we'll use behavioral changes to define "what software can do", 
+and structural changes to keep the options open for "what it can become".</p>
+<p>As a technical person, the importance of structural changes is obvious: 
+they make future behavioral changes easy. However, these improvements 
+may be less appealing to those unfamiliar with technical aspects.</p>
+<p>Kent Beck categorizes people into <strong>"changers"</strong> - developers who can modify the code,
+and <strong>"observers"</strong> - those who can only observe the system's behavior. 
+He emphasizes that these two groups' ongoing collaboration and interaction 
+leads to the eventual design of the system.</p>
+<h2 id="my-commitments">My Commitments</h2>
+<p>I like the way the book is written: it offers questions rather than rules. 
+It made me think of my team and our projects. It made me question big batches of changes,
+regardless of their type. It made me commit that I will:</p>
+<ol>
+<li><strong>Keep a short feedback loop</strong>: use more granular PRs, merge and release more often;</li>
+<li><strong>Use different commits</strong> (at least) to separate behavioral and structural changes;</li>
+<li><strong>Actively think</strong> about how each component can evolve;</li>
+<li><strong>Always be aware of the impact</strong> of my changes: they should either immediately produce value
+(by increasing revenue or cutting costs), or keep the options open for the future.</li>
+</ol></p>
+    </article>
+</section>
+
+  <!-- Newsletter Subscription -->
+  <div style="margin-top: 3rem; padding: 2rem 7px; text-align: center;">
+    <p style="margin-bottom: 1.5rem;">
+      Subscribe to my monthly dev log.<br>
+      Articles on writing code with intentionality.<br>
+      No AI-generated fluff!
+    </p>
+
+    <form
+      id="newsletter-form-footer"
+      class="embeddable-buttondown-form"
+      style="margin: 0 auto;"
+    >
+      <input type="email" name="email" class="bd-email-footer" placeholder="Enter your email" required />
+      <input type="submit" value="Subscribe" />
+    </form>
+    <div id="newsletter-message-footer" style="display: none; margin-top: 10px; padding: 10px; border-radius: 6px;"></div>
+  </div>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../javascripts/newsletter.js" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>

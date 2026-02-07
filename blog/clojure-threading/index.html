@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>Clojure Threading for Dummy Java Devs (such as myself) - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../tidy-first-commitments/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../less-mocks-more-functions/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="clojure-threading-for-dummy-java-devs-such-as-myself">Clojure Threading for Dummy Java Devs (such as myself)</h1>
+<p><em>Published: August 30, 2025</em></p>
+<p><code>#clojure</code> <code>#java</code> <a href="/#functional-programming"><code>#functional programming</code></a></p>
+<p>Recently, I've been playing around with Clojure. 
+I wanted to take advantage of the AI tools available to explore a new language...
+and not just Kotlin or Python, but something completely new to me.</p>
+<p>One of the features that caught my attention was the threading macros (<code>-&gt;</code> and <code>-&gt;&gt;</code>) 
+it's a pretty simple feature, but I found it interesting and elegant.</p>
+<h2 id="strava-heatmaps">Strava Heatmaps</h2>
+<p>A few words about the project I've built in Clojure? </p>
+<p>Well, I'm recording all my sport activities using my Garmin watch, even when I'm playing football.</p>
+<p><em>When I get home and download my activity, the map looks something like the spaghetti code I 
+generate when vibe-coding with ChatGPT:</em></p>
+<p><img alt="Map" src="../../img/clojure-threading_strava.png" /></p>
+<p>Needless to say, I want to visualize my football session a bit better. 
+so I decided to build a small app to export this activity as a GPX file 
+and generate an HTML heatmap based on it. 
+After applying all these steps, we'll expect a heatmap like this:</p>
+<p><img alt="Heatmap" src="../../img/clojure-threading_heatmap.png" /></p>
+<p>Basically, we need to:</p>
+<ul>
+<li>parse the GPX file <em>(GPX is an XML schema designed as a common GPS data)</em></li>
+<li>normalize the data</li>
+<li>(optionally) rotate the activity by a given angle</li>
+<li>(optionally) filter the data - for eg.: by running cadence</li>
+<li>generate the heatmap</li>
+<li>generate the HTML file</li>
+</ul>
+<p>A functional language sounded like a perfect fit for implementing this pipeline of operations, 
+so I decided to give Clojure a try. </p>
+<p>Before diving into the threading macros that make these pipelines so elegant, let's cover some Clojure basics.
+If you're coming from Java like me, the syntax might look intimidating at first, 
+but the core concepts are actually quite straightforward once you get the hang of the parentheses.</p>
+<h2 id="clojure-syntax">Clojure Syntax</h2>
+<p>Let me show you what I understood about Clojure so far. </p>
+<p>The syntax follows a consistent pattern: <code>(function-name arguments...)</code> where the function always comes first
+inside the parentheses, followed by its arguments. </p>
+<p>For example, if we want to add two numbers <em>(say 1 and 2)</em>, we would write: <code>( + 1 2 )</code>. 
+This is because <code>+</code> is the addition function, followed by <code>1</code> and <code>2</code> - the numbers being added.</p>
+<p>We can define a function using the <code>defn</code> keyword, followed by the function name, 
+its arguments, and the body of the function. Let's write a function that adds two numbers, received as arguments:</p>
+<pre><code class="language-clojure">(defn add [a b] 
+  (+ a b))
+</code></pre>
+<p>Similarly, when we want to compare numbers, we'll start with the comparison function, 
+followed by the numbers to compare. For instance, this is how we verify if two numbers
+<em>(a and b)</em> are equal: <code>( = a b )</code></p>
+<p>Now let's write a unit test for our <code>add</code> function:</p>
+<pre><code class="language-clojure">(deftest add-two-test
+  (is 
+    (= 3 
+      (add 1 2)
+    )
+  )
+)
+
+;; or simply:
+(deftest add-two-test
+  (is (= 3 (add 1 2))))
+</code></pre>
+<h2 id="the-threading-macros">The Threading Macros</h2>
+<p>Look at our test: as simple as it is, it already has quite a few nested function calls.
+If we read it from right to left, we can see that we're:</p>
+<ul>
+<li>adding 1 and 2</li>
+<li>comparing the result with 3</li>
+<li>verifying if the result is true</li>
+</ul>
+<p>When it comes to pipelines of operations, the threading macros (<code>-&gt;</code> and <code>-&gt;&gt;</code>)
+allows us to take the result of one operation and pass it as argument to the next operation.</p>
+<p>The difference between the two is that <code>-&gt;</code> (<em>aka thread-first</em>) passes the value to the next function
+as the first argument, while <code>-&gt;&gt;</code> (<em>aka thread-last</em>) passes the value as the last argument.</p>
+<p>Therefore, we can re-write our test as follows:</p>
+<pre><code class="language-clojure">(deftest add-two-test-x
+  (-&gt;&gt; 1
+    (add 2)
+    (= 3)
+    (is)))
+</code></pre>
+<p>And it reads like this:</p>
+<ul>
+<li>we start with the number 1, </li>
+<li>then we add 2 to it, </li>
+<li>then we compare the result with 3, </li>
+<li>and finally we verify if the new result is true.</li>
+</ul>
+<p>Of course, this is a very simple example, but it shows the power of the threading macros.</p>
+<p>Let's go back to our heatmap pipeline: 
+As discussed, we'll start with a GPX file that we need to read as text. 
+Then, we'll parse its content and normalize the data.
+At this point, we can optionally rotate the activity by a given angle
+and/or filter the data. Then, we'll generate the heatmap as a sparse matrix.
+Following that, we'll convert the matrix to RGB values, convert it to json and 
+inject it into a HTML template. </p>
+<p>Quite a few nested function calls, right? Wait to see them in action:</p>
+<pre><code class="language-clojure">(defn strava-heatmap [file]
+  (html/save-file 
+    (html/generate-html
+      (heatmap/map-to-json
+        (heatmap/map-to-rgb
+          (heatmap/heatmap-matrix
+            (heatmap/normalize-trkpts
+              (gpx/xml-to-trkpts
+                (gpx/read-file-as-string file)))))))
+    (str &quot;out/&quot; (UUID/randomUUID) &quot;.html&quot;)))
+</code></pre>
+<p>Now, let's re-write it using the threading macros:
+we'll start from the GPX file we exported from Strava and thread 
+the result of each step as the last argument of the next function:</p>
+<pre><code class="language-clojure">(defn strava-heatmap [file]
+  (-&gt;&gt; file
+    gpx/read-file-as-string
+    gpx/xml-to-trkpts
+    heatmap/normalize-trkpts
+    heatmap/heatmap-matrix
+    heatmap/map-to-rgb
+    heatmap/map-to-json
+    html/generate-html
+    (html/save-file 
+      (str &quot;out/&quot; (UUID/randomUUID) &quot;.html&quot;))))
+</code></pre>
+<p>Pretty neat, isn't it?</p>
+<p>Let's add a step to rotate the activity counter-clockwise by 55 degrees, 
+because I want the heatmap to be aligned with the pitch of the field, 
+rather than the North-South axis. </p>
+<p>Additionally, let's remove the track points 
+with a cadence of less than 10 steps per minute 
+(filtering out epic failures as a goalkeeper):</p>
+<pre><code class="language-clojure">(defn strava-heatmap [file]
+  (-&gt;&gt; file
+    gpx/read-file-as-string
+    gpx/xml-to-trkpts
+    (filter (fn[pt] (&gt; (:cadence pt) 10))) ;; &lt;- filter by cadence
+    heatmap/normalize-trkpts-precision
+    (heatmap/rotate-points -55) ;; &lt;- rotate counter-clockwise by 55 degrees
+    heatmap/heatmap-matrix
+    heatmap/map-to-rgb
+    heatmap/map-to-json
+    html/generate-html
+    (html/save-file 
+       (str &quot;out/&quot; (UUID/randomUUID) &quot;.html&quot;))))
+</code></pre>
+<p>As we can see, it's much easier to add new steps to the pipeline. 
+I also like the fact that you don't really need to know Clojure to be able to read this flow.</p>
+<p>Beyond readability, functional pipelines offer significant practical benefits: 
+each transformation step is isolated and testable, 
+making debugging easier since we can inspect the output at any stage. 
+Additionally, pipeline steps can be easily reordered, combined, or parallelized 
+without affecting other parts of the system.</p>
+<h2 id="what-about-java">What About Java?</h2>
+<details>
+<summary>What does this remind you of from Java?</summary>
+And why the Stream API?
+</details>
+<p><br></p>
+<p>Some fluent APIs from Java are inspired from functional programming. 
+That's why we can find similar patterns in the Stream API, reactive pipelines...
+and even CompletableFuture! </p>
+<p>Jus for fun, let's imagine we wrote this in Java, using the CompletableFuture API 
+(this is how the code can look like):</p>
+<pre><code class="language-java">public CompletableFuture&lt;Path&gt; stravaHeatmap(String file) {
+    return CompletableFuture
+      .supplyAsync(() -&gt; gpx.readFileAsString(file))
+      .thenApply(xml -&gt; gpx.xmlToTrkpts(xml))
+      .thenApply(pts -&gt; pts.stream()
+         .filter(pt -&gt; pt.cadence() &gt; 10).toList())
+      .thenApply(pts -&gt; heatmap.normalizeTrkptsPrecision(pts))
+      .thenApply(pts -&gt; heatmap.rotatePoints(pts, -55))
+      .thenApply(map -&gt; heatmap.heatmapMatrix(map))
+      .thenApply(map -&gt; heatmap.mapToRgb(map))
+      .thenApply(rgb -&gt; heatmap.mapToJson(rgb))
+      .thenApply(json -&gt; htmlUtil.generateHtml(json))
+      .thenApply(html -&gt; htmlUtil.saveFile(
+          &quot;out/%s.html&quot;.frormatted(UUID.randomUUID())), html);
+}
+</code></pre>
+<p>Needless to say, the Clojure version is much easier to read and reason about.</p>
+<p>The threading pattern we see in Clojure aligns perfectly with Data-Oriented Programming (DOP),
+a paradigm gaining traction in Java. DOP emphasizes treating data as immutable and flowing it 
+through a series of transformations, rather than encapsulating it within objects. 
+This approach naturally benefits from threading operators because data transformations become explicit pipeline steps. </p>
+<p>If you want to read more about DOP, check out this <a href="https://www.baeldung.com/java-dop-oop-principles-differences">article</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this shoer article, we discussed Clojure's threading macros. 
+One of those simple features that make a huge difference in how you write and think about code. </p>
+<p>Whether you're working in Clojure or dreaming of better Java syntax, the pattern is worth understanding.</p>
+<pre><code class="language-text">    Do you think we'll ever get a threading operator in Java?
+</code></pre></p>
+    </article>
+</section>
+
+  <!-- Newsletter Subscription -->
+  <div style="margin-top: 3rem; padding: 2rem 7px; text-align: center;">
+    <p style="margin-bottom: 1.5rem;">
+      Subscribe to my monthly dev log.<br>
+      Articles on writing code with intentionality.<br>
+      No AI-generated fluff!
+    </p>
+
+    <form
+      id="newsletter-form-footer"
+      class="embeddable-buttondown-form"
+      style="margin: 0 auto;"
+    >
+      <input type="email" name="email" class="bd-email-footer" placeholder="Enter your email" required />
+      <input type="submit" value="Subscribe" />
+    </form>
+    <div id="newsletter-message-footer" style="display: none; margin-top: 10px; padding: 10px; border-radius: 6px;"></div>
+  </div>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../javascripts/newsletter.js" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>
