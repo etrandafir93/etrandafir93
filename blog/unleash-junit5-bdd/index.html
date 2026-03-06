@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>From Parameterized Tests to BDD Specifications - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    From Parameterized Tests to BDD Specifications
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../.."
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../micrometer-assertions-contribution/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="from-parameterized-tests-to-bdd-specifications">From Parameterized Tests to BDD Specifications</h1>
+<p><em>Published: March 6, 2026</em></p>
+<p><a href="/#testing"><code>#testing</code></a> </p>
+<p>In this article,
+we'll explore how to combine JUnit5's powerful features
+with Behavior Driven Development principles
+to write expressive,
+maintainable tests.</p>
+<p>We'll build a BMI (Body Mass Index) calculator
+and learn how to use parameterized tests,
+custom argument converters,
+and BDD-style specifications
+to create tests that are both readable
+and decoupled from implementation details.</p>
+<h2 id="the-bmi-calculator">The BMI Calculator</h2>
+<p>Let's start with a simple health category enum for our BMI calculator:</p>
+<pre><code class="language-java">enum BmiHealthCategory {
+  SEVERE_THINNESS(Double.MIN_VALUE, 16d),
+  MODERATE_THINNESS(16d, 17d),
+  MILD_THINNESS(17d, 18.5d),
+  NORMAL(18.5d, 25d),
+  OVERWEIGHT(25d, 30d),
+  OBESE_CLASS_I(30d, 35d),
+  OBESE_CLASS_II(35d, 40d),
+  OBESE_CLASS_III(40d, Double.MAX_VALUE);
+
+  private final double min;
+  private final double max;
+
+  static BmiHealthCategory forBmi(double bmi) {
+     return stream(values())
+        .filter(category -&gt; category.min &lt; bmi)
+        .filter(category -&gt; category.max &gt; bmi)
+        .findFirst()
+        .orElseThrow();
+  }
+}
+</code></pre>
+<h2 id="junit5s-parameterized-tests">JUnit5's Parameterized Tests</h2>
+<p>We can use JUnit5's <code>@ParameterizedTest</code>
+to provide pairs of input values and expected outputs.
+This is particularly useful for computations
+where we need to check outcomes for many different scenarios.</p>
+<p><img alt="img" src="../../img/junit_parameterized_test.png" /></p>
+<p>There are many ways to provide parameters for tests,
+but we'll focus on <code>@CsvSource</code>.
+By default,
+this allows us to specify an array of strings —
+each string will be used for a different test.</p>
+<p>The strings themselves should have comma-separated values.
+For example,
+if we want to test the addition of two integer numbers:</p>
+<pre><code class="language-java">@ParameterizedTest
+@CsvSource(value = {
+    &quot;1,1,2&quot;,
+    &quot;2,2,4&quot;,
+    &quot;3,5,8&quot;,
+    &quot;7,7,14&quot;
+})
+void additionTest(int a, int b, int expectedSum) {
+    assertThat(a + b).isEqualTo(expectedSum);
+}
+</code></pre>
+<p>Moreover,
+we can configure <code>@CsvSource</code> to accept a different character
+as the delimiter instead of the comma.</p>
+<p>Let's update <em>additionTest()</em> and change the delimiter to <code>|</code>.
+This makes the test parameters look like a small table:</p>
+<pre><code class="language-java">@ParameterizedTest
+@CsvSource(value = {
+    &quot;1 | 1 | 2&quot;,
+    &quot;2 | 2 | 4&quot;,
+    &quot;3 | 5 | 8&quot;,
+    &quot;7 | 7 | 14&quot;
+}, delimiter = '|')
+void additionTest(int a, int b, int expectedSum) {
+    assertThat(a + b).isEqualTo(expectedSum);
+}
+</code></pre>
+<p>Finally,
+we can use the <code>name</code> property of <code>@ParameterizedTest</code>
+to provide a nice description.
+When specifying it,
+we can use placeholders to reference the parameters:</p>
+<pre><code class="language-java">@ParameterizedTest(name = &quot;{0} plus {1} should be equal to {2}&quot;)
+@CsvSource(value = {
+    &quot;1 | 1 | 2&quot;,
+    &quot;2 | 2 | 4&quot;,
+    &quot;3 | 5 | 8&quot;,
+    &quot;7 | 7 | 14&quot;
+}, delimiter = '|')
+void additionTest(int a, int b, int expectedSum) {
+    assertThat(a + b).isEqualTo(expectedSum);
+}
+</code></pre>
+<p><img alt="img" src="../../img/junit_parameterized_test_name.png" /></p>
+<h2 id="bdd-style-tests-for-the-bmi-calculator">BDD Style Tests For The BMI Calculator</h2>
+<p>Let's apply what we've learned to our BMI calculator for the following scenario:</p>
+<pre><code>GIVEN a subject with a height of 1.75m
+WHEN weight is {input_weight} kg
+THEN subject is {expected_category}
+</code></pre>
+<p>After a first try, we can come up with something like this:</p>
+<pre><code class="language-java">@DisplayName(&quot;GIVEN a subject with a height of 1.75m&quot;)
+@ParameterizedTest(name = &quot;WHEN weight is {0}kg, THEN subject is {1}&quot;)
+@CsvSource(value = {
+      &quot;55 | MILD_THINNESS&quot;,
+      &quot;70 | NORMAL&quot;,
+      &quot;80 | OVERWEIGHT&quot;
+}, delimiter = '|')
+void shouldCalculateCategoryForAGivenHeight(
+            double weightInput, String expectedOutput) {
+   //given
+   var height = Height.ofMeters(1.75d);
+
+   //when
+   var weight = Weight.ofKg(weightInput);
+   var category = BmiCalculator.calculate(weight, height);
+
+   //then
+   BmiHealthCategory expectedCategory = BmiHealthCategory.valueOf(expectedOutput);
+   assertThat(category).isEqualTo(expectedCategory);
+}
+</code></pre>
+<p>Though,
+we can 'steal' a few more ideas from the BDD approach.
+For instance,
+we can try to make the test less imperative.</p>
+<p>At this point,
+the test knows how to do the conversions
+to <em>Weight</em> and <em>BmiHealthCategory</em>.
+Moreover,
+the specification is directly coupled to the <em>BmiHealthCategory</em> enum.</p>
+<p>When using Behavior Driven Development,
+specifications should know as little as possible
+(or nothing at all) about the implementation.
+They need to be declarative and use business-related terms.</p>
+<p>We can break this direct coupling
+by using JUnit5's built-in feature:
+the <em>ArgumentConverters</em>.</p>
+<h2 id="argument-converters">Argument Converters</h2>
+<p>We can implement the <em>ArgumentConverter</em> interface
+to convert the parameters of our parameterized tests.</p>
+<p>For example,
+the following converter maps the <em>String</em> input
+from the specification to an internal <em>Weight</em> object:</p>
+<pre><code class="language-java">static class WeightInKgConverter implements ArgumentConverter {
+   @Override
+   public Object convert(Object source, ParameterContext context)
+         throws ArgumentConversionException {
+      if (source instanceof String kgs) {
+         return Weight.ofKg(Double.valueOf(kgs));
+      }
+      throw new IllegalArgumentException(&quot;The argument should be a double: &quot; + source);
+   }
+}
+</code></pre>
+<p>To use it,
+we need to annotate the test parameter with <code>@ConvertWith</code>
+and provide the class name:</p>
+<pre><code class="language-java">@DisplayName(&quot;GIVEN a subject with a height of 1.75m&quot;)
+@ParameterizedTest(name = &quot;WHEN weight is {0}kg, THEN subject is {1}&quot;)
+@CsvSource(value = {
+      &quot;55 | MILD_THINNESS&quot;,
+      &quot;70 | NORMAL&quot;,
+      &quot;80 | OVERWEIGHT&quot;
+}, delimiter = '|')
+void shouldCalculateCategoryForAGivenHeight(
+      @ConvertWith(WeightInKgConverter.class) Weight weight,
+      String expectedOutput) {
+    // ....
+}
+</code></pre>
+<p>As a result,
+if we want to use a more business-related term
+for the <em>BmiHealthCategory</em> in the specification,
+we can create a converter that maps it to our internal enum.
+For demonstration purposes,
+let's use title-case strings with no underscore:</p>
+<pre><code class="language-java">static class BmiHealthCategoryConverter implements ArgumentConverter {
+   @Override
+   public Object convert(Object source, ParameterContext context)
+         throws ArgumentConversionException {
+      if (source instanceof String category) {
+         String categoryName = category.replaceAll(&quot; &quot;, &quot;_&quot;).toUpperCase();
+         return BmiHealthCategory.valueOf(categoryName);
+      }
+      throw new IllegalArgumentException(&quot;The argument should be a String: &quot; + source);
+   }
+}
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>Finally, let's put everything together and take a look at the result:</p>
+<pre><code class="language-java">@DisplayName(&quot;GIVEN a subject with a height of 1.75m&quot;)
+@ParameterizedTest(name = &quot;WHEN weight is {0}kg, THEN subject is {1}&quot;)
+@CsvSource(value = {
+      &quot; 40 | Severe Thinness&quot;,
+      &quot; 50 | Moderate Thinness&quot;,
+      &quot; 55 | Mild Thinness&quot;,
+      &quot; 70 | Normal&quot;,
+      &quot; 80 | Overweight&quot;,
+      &quot;100 | Obese Class I&quot;,
+      &quot;120 | Obese Class II&quot;,
+      &quot;140 | Obese Class III&quot;
+}, delimiter = '|')
+void shouldCalculateCategoryForAGivenHeight(
+      @ConvertWith(WeightInKgConverter.class) Weight weight,
+      @ConvertWith(BmiHealthCategoryConverter.class) BmiHealthCategory expectedCategory) {
+   //given
+   var givenHeight = Height.ofMeters(1.75d);
+
+   //when
+   var category = BmiCalculator.calculate(weight, givenHeight);
+
+   //then
+   assertThat(category).isEqualTo(expectedCategory);
+}
+</code></pre>
+<p>In this article,
+we've explored JUnit5's features
+that allow us to write expressive,
+parameterized tests.
+We've learned about the <code>@ParameterizedTest</code> annotation,
+<code>@CsvSource</code>,
+and how to create custom <em>ArgumentConverter</em> implementations.</p>
+<p>Moreover,
+we touched on best practices when it comes to BDD specifications
+and learned it's best to keep tests agnostic
+from implementation details.
+By using custom converters,
+we can write specifications in business language
+while keeping the conversion logic separate from our test logic.</p>
+<p><img alt="img" src="../../img/junit_parameterized_test_report.png" /></p></p>
+    </article>
+</section>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>
