@@ -10,6 +10,7 @@ extra_javascript:
   - https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform
 nav:
   - "--- About Me ---": index.md
+  - "From Parameterized Tests to BDD Specifications": blog/unleash-junit5-bdd.md
   - "My First Contribution to Micrometer": blog/micrometer-assertions-contribution.md
   - "The Case of the Sometimes-Null Constant": blog/circular-initialization-mystery.md
   - "The Case of the Vanishing Schema Field": blog/avro-duplicate-class-mystery.md
