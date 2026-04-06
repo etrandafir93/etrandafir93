@@ -13,7 +13,8 @@
       "Bash(gh pr view:*)",
       "WebFetch(domain:github.com)",
       "Bash(gh pr diff:*)",
-      "WebFetch(domain:sembr.org)"
+      "WebFetch(domain:sembr.org)",
+      "WebFetch(domain:medium.com)"
     ],
     "deny": [],
     "ask": []

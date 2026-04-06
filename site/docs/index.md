@@ -17,9 +17,9 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 <p style="padding-top: 30px;">Browse articles by topic:</p>
 
 <div class="tag-container">
-  <button class="tag-chip" onclick="showArticles('design')">#design (6)</button>
+  <button class="tag-chip" onclick="showArticles('design')">#design (7)</button>
   <button class="tag-chip" onclick="showArticles('testing')">#testing (4)</button>
-  <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming (3)</button>
+  <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming (4)</button>
   <button class="tag-chip" onclick="showArticles('debugging')">#debugging (2)</button>
   <button class="tag-chip" onclick="showArticles('oss')">#oss (2)</button>
   <button class="tag-chip" onclick="showArticles('kafka')">#kafka (1)</button>
@@ -35,6 +35,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
     <li><a href="blog/java-optional-vs-kotlin/">Java's Optional vs Kotlin: Side by Side</a></li>
     <li><a href="blog/lombok-lazy-oop/">Lombok's "Lazy" Magic and the O.O.P. Alternative</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
+    <li><a href="blog/why-optional-is-a-monad/">Why Optional&lt;&gt; is a Monad and Why the f() Should I Care?</a></li>
   </ul>
 </div>
 
@@ -56,6 +57,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
     <li><a href="blog/clojure-threading/">Clojure Threading for Dummy Java Devs (such as myself)</a></li>
     <li><a href="blog/java-optional-vs-kotlin/">Java's Optional vs Kotlin: Side by Side</a></li>
     <li><a href="blog/less-mocks-more-functions/">Less Mocks, More Functions!</a></li>
+    <li><a href="blog/why-optional-is-a-monad/">Why Optional&lt;&gt; is a Monad and Why the f() Should I Care?</a></li>
   </ul>
 </div>
 
