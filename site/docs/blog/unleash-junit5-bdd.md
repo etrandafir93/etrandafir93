@@ -1,3 +1,9 @@
+---
+description: Learn how to combine JUnit5 parameterized tests with BDD principles using custom ArgumentConverters. Write expressive, maintainable tests decoupled from implementation.
+keywords: junit5, testing, bdd, parameterized tests, java, test automation, argument converter, csvSource, behavior driven development
+image: img/junit_parameterized_test.png
+---
+
 # From Parameterized Tests to BDD Specifications
 
 *Published: March 6, 2026*

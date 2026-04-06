@@ -1,3 +1,9 @@
+---
+description: Learn Uncle Bob's principles for managing dependencies - the Stable Dependencies Principle and Stable Abstractions Principle. Understand component stability and abstraction balance.
+keywords: clean code, uncle bob, stable dependencies principle, stable abstractions principle, software design, component design, dependency management, architecture
+image: img/abstractions_stable_graph.png
+---
+
 # Uncle Bob's Advice on Stability and Abstractions
 
 *Published: December 13, 2025*

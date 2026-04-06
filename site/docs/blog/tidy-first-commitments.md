@@ -1,3 +1,9 @@
+---
+description: Key insights from Kent Beck's "Tidy First?" - a concise guide on incremental code improvements, structural vs behavioral changes, and maintaining software design through tidying.
+keywords: tidy first, kent beck, refactoring, software design, code quality, structural changes, behavioral changes, book review, clean code
+image: img/tidy-first_book.jpeg
+---
+
 # 'Tidy First?' and my Post-Reading Commitments
 
 *Published: April 11, 2024*

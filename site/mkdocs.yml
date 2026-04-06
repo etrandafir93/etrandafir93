@@ -1,4 +1,8 @@
 site_name: Emanuel Trandafir
+site_url: https://blog.etrandafir.com
+site_description: Software Craftsman blog featuring articles on functional programming, testing, design patterns, and Java/Kotlin development
+site_author: Emanuel Trandafir
+repo_url: https://github.com/etrandafir93
 theme:
   name: dracula
   logo: img/me.jpeg
@@ -6,6 +10,9 @@ theme:
   custom_dir: overrides
 markdown_extensions:
   - attr_list
+  - meta
+plugins:
+  - search
 extra_css:
   - stylesheets/extra.css
 extra_javascript:

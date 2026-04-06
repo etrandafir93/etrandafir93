@@ -1,3 +1,9 @@
+---
+description: Learn why Java's Optional is a monad and how to use map() and flatMap() for elegant function composition. Includes practical examples and comparisons with functional programming concepts.
+keywords: java, optional, monad, functional programming, flatmap, map, java 8, null handling, function composition
+image: img/optional_monad_1.png
+---
+
 # Why _Optional<>_ is a Monad and Why the _f()_ Should I Care?
 
 *Published: October 23, 2022*

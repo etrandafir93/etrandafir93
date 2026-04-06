@@ -1,3 +1,9 @@
+---
+description: Learn Clojure threading macros (-> and ->>) through building a Strava heatmap generator. Compare functional pipelines with Java's Stream API and discover data-oriented programming patterns.
+keywords: clojure, threading macros, functional programming, java, data oriented programming, pipelines, gpx, thread-first, thread-last, strava
+image: img/clojure-threading_heatmap.png
+---
+
 # Clojure Threading for Dummy Java Devs (such as myself)
 
 *Published: August 30, 2025*

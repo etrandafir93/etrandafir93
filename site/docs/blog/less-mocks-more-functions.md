@@ -1,3 +1,9 @@
+---
+description: Reduce testing complexity by using functional interfaces instead of mocks. Learn how to extract side effects with Java's Consumer and Supplier for cleaner, more testable code.
+keywords: testing, functional programming, java, mocking, consumer, supplier, test automation, solid principles, dependency injection, unit testing
+image: img/less_mocks_meme.png
+---
+
 # Less Mocks, More Functions!
 
 *Published: September 28, 2025*

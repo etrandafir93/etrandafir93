@@ -1,3 +1,9 @@
+---
+description: Explore Lombok's lazy getter annotation and compare it with the decorator pattern for lazy initialization. Learn OOP alternatives to annotation magic for better code design.
+keywords: lombok, lazy initialization, decorator pattern, java, oop, design patterns, lazy getter, caching, object oriented programming
+image: img/lombok_lazy_oop_1.png
+---
+
 # Lombok's "Lazy" Magic and the O.O.P. Alternative
 
 *Published: February 12, 2023*

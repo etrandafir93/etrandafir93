@@ -140,9 +140,15 @@ This section provides detailed step-by-step instructions for adding new blog art
 1. Create a new Markdown file in `/site/docs/blog/` with a descriptive filename (use kebab-case)
    - Example: `unleash-junit5-bdd.md`
 
-2. Follow this structure:
+2. **ALWAYS include SEO metadata** at the top of the file using YAML front matter:
 
 ```markdown
+---
+description: Brief description of the article (150-160 characters) for search engines and social media
+keywords: keyword1, keyword2, keyword3, keyword4, keyword5
+image: img/article-featured-image.png
+---
+
 # Article Title
 
 *Published: Month DD, YYYY*
@@ -163,6 +169,11 @@ More content...
 
 Closing thoughts...
 ```
+
+**SEO Metadata Guidelines:**
+- `description`: Write a compelling 150-160 character summary that accurately describes the article's content
+- `keywords`: Include 5-10 relevant keywords separated by commas (use actual topic keywords, not just tags)
+- `image`: Reference a relevant image from `/site/docs/img/` for social media cards (optional, defaults to author photo)
 
 ### Step 2: Format the Content
 

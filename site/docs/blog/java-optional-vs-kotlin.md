@@ -1,3 +1,9 @@
+---
+description: Compare Java's Optional with Kotlin's nullable types. Learn about map, flatMap, Elvis operator, safe call operator, and null handling patterns in both languages.
+keywords: java, kotlin, optional, nullable types, null safety, elvis operator, safe call, functional programming, flatmap, type system
+image: img/java-vs-kotlin.png
+---
+
 # Java's Optional vs Kotlin: Side by Side
 
 *Published: July 16, 2023*

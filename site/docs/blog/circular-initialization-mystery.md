@@ -1,3 +1,9 @@
+---
+description: A deep dive into a flaky test revealing circular class initialization in Java. Learn how static final fields can be null and how to detect initialization deadlocks with ErrorProne.
+keywords: java, debugging, class initialization, flaky tests, circular dependency, jvm, static fields, errorprone, micrometer
+image: img/micrometer-cricular-ref-1.png
+---
+
 # The Case of the Sometimes-Null Constant
 
 *Published: January 31, 2026*

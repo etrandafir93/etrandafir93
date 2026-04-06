@@ -1,3 +1,9 @@
+---
+description: My first open-source contribution to Micrometer adds AssertJ-style assertions for testing metrics. Learn how to use the new fluent API for counter, timer, and gauge assertions.
+keywords: micrometer, testing, open source, java, metrics, observability, assertj, oss contribution, meter testing
+image: img/micrometer-assertions.png
+---
+
 # My First Contribution to Micrometer
 
 *Published: January 13, 2026*

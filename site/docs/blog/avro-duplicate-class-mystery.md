@@ -1,3 +1,9 @@
+---
+description: A debugging story about non-deterministic Avro schema bugs caused by duplicate generated classes. Learn about JVM classloading, DDD bounded contexts, and Maven Enforcer Plugin.
+keywords: avro, kafka, debugging, java, classloader, maven, domain driven design, schema evolution, duplicate classes, maven enforcer plugin
+image: img/avro_dupped_classes.png
+---
+
 # The Case of the Vanishing Schema Field
 
 *Published: December 27, 2025*
