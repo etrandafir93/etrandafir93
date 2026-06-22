@@ -5,13 +5,18 @@
 [![Articles](https://img.shields.io/badge/Articles%20-%20red)](https://www.baeldung.com/author/emanueltrandafir) 
 
  
-I value **simplicity and intentionality** over blindly applying patterns and abstractions. I care deeply about the **design and testability** of the software I create. I also value **communication and collaboration** and enjoy sharing my knowledge through open-source contributions and technical articles.
+I value **simplicity and intentionality** over blindly applying patterns and abstractions. 
+
+I care deeply about the **design and testability** of the software I create. 
+
+I also value **communication and collaboration** and enjoy sharing my knowledge through open-source contributions and technical articles.
 
 
 <details>
-<summary>Check out some of my articles.</summary>
+<summary>Check out some of my articles and talks.</summary>
 
 ## 🚀 Design
+- [Consistency in Event-Driven Systems (talk)](https://youtu.be/RYyspplOMNw?si=IGCx7E2ujXbp_Sur) - Distributed systems don't come with transactions. So how do we keep data consistent across services? Let's explore dual writes, the outbox pattern, and sagas — and when to reach for each.
 - [Vertical Slice Architecture](https://www.baeldung.com/java-vertical-slice-architecture) - Let's organize the codebase by business capabilities rather than technical concerns. This approach slices the application vertically and challenges the traditional, layered, approach.
 - [Monads In Java](https://www.baeldung.com/java-monads) - Functional programming paradigms and their abstract algebra terms can be overwhelming... But, getting a handle on "monads" will help us better grasp modern Java APIs.
 In this article, I've tried to find the right balance between theory and practical Java examples.
