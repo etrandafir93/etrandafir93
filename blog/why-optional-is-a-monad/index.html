@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+        <title>Why Optional<> is a Monad and Why the f() Should I Care? - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link rel="canonical" href="https://blog.etrandafir.com/blog/why-optional-is-a-monad/">
+        <meta name="author" content="Emanuel Trandafir">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../unleash-junit5-bdd/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    From Parameterized Tests to BDD Specifications
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Why Optional<> is a Monad and Why the f() Should I Care?
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../postfix-completion-templates/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    IntelliJ's Postfix Completion Templates
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../clean-code-dependency-principles/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../postfix-completion-templates/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                            
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="why-optional-is-a-monad-and-why-the-f-should-i-care">Why <em>Optional&lt;&gt;</em> is a Monad and Why the <em>f()</em> Should I Care?</h1>
+<p><em>Published: October 23, 2022</em></p>
+<p><a href="/#functional-programming"><code>#functional-programming</code></a> <a href="/#design"><code>#design</code></a></p>
+<p>Please,
+Use <em>Optional&lt;&gt;</em> In the Intended Way!</p>
+<h2 id="overview">Overview</h2>
+<p>Firstly,
+let's see where the need for <em>Optional</em> (and for monads, in general) comes from.
+To do this,
+we'll start with an analogy and think of the process of making bread.</p>
+<p>Firstly,
+we'll make flour by milling the wheat;
+after that,
+we'll make bread using the flour from the previous step.</p>
+<p><img alt="img" src="../../img/optional_monad_1.png" width="800" /></p>
+<p>We can express this in programmatic or mathematical terms using functions:</p>
+<pre><code>flour = mill( wheat )
+bread = bake( flour )
+</code></pre>
+<p>Or,
+we can simply compose the two functions like this:</p>
+<pre><code>bread = bake( mill(wheat) )
+</code></pre>
+<h2 id="the-corner-cases">The Corner Cases</h2>
+<p>Unfortunately,
+each step of the processing may fail for various reasons.
+When composing functions like this,
+error handling might be troublesome.</p>
+<p>For instance,
+maybe wheat is not always successfully processed into flour,
+and the flour is not always correctly baked.</p>
+<p>Depending on the programming language that we're using and on the context,
+this can have different effects —
+for instance,
+an exception can be thrown,
+null can be returned.. etc.</p>
+<p>Let's pretend that,
+in our case,
+if something goes wrong with one of the processes,
+null is returned.</p>
+<pre><code class="language-java">flour = mill( wheat )
+if( flour != null ) {
+   bread = bake( flour )
+   if( bread != null ) {
+     // .... do something()
+   }
+}
+</code></pre>
+<p>At this point,
+we can no longer compose the methods due to the null checks.</p>
+<h2 id="introducing-a-monad">Introducing a Monad</h2>
+<p>In order to fix this,
+we can wrap the result of the previous function into an object
+that will continue the processing if the data is present,
+and will do nothing if the data is missing.
+This wrapper object will be a "monad".</p>
+<p>For instance,
+we can think of a <em>List</em>.
+If there are elements inside,
+they will be processed according to the next step.
+On the other hand,
+if the list is empty,
+nothing will happen.
+A <em>List</em> is a monad.</p>
+<p>Though,
+using a <em>List</em> here will not make much sense
+because we want to only pass one object at a time from step to step.</p>
+<p>Therefore,
+we can construct our own monad object or use one of the existing ones.
+There are many monads defined in the programming languages with functional features.
+Depending on the language,
+the monad we need might be called something like a <em>Maybe&lt;&gt;</em>,
+<em>Either&lt;&gt;</em>,
+or <em>Optional&lt;&gt;</em>.</p>
+<h2 id="map-and-flatmap">map() and flatMap()</h2>
+<p>Let's wrap our function return types into <em>Optional&lt;&gt;</em> and try to go back to function composition:</p>
+<pre><code class="language-java">Optional&lt;Flour&gt; mill(Wheat wheat) { ... }
+Optional&lt;Bread&gt; bake(Flour flour) { ... }
+</code></pre>
+<p>We will have a new problem now:
+to compose or chain the functions,
+each of them must receive the result of the previous one as a parameter.</p>
+<p><img alt="img" src="../../img/optional_monad_2.png" width="800" /></p>
+<p>Consequently,
+the <em>bake()</em> function must take in an <em>Optional<Flour></em> instead of the raw type <em>Flour</em>.</p>
+<p>But,
+because the <em>bake()</em> function wraps the result into an <em>Optional&lt;&gt;</em>,
+the result of the second step will be wrapped twice,
+the result of the third step will be wrapped 3 times.. and so on.</p>
+<p><img alt="img" src="../../img/optional_monad_3.png" width="800" /></p>
+<p>The solution to this is the <em>flatMap()</em> function.
+The purpose of <em>flatMap()</em> is to keep the structure flat
+when converting from one type to another.</p>
+<p>In other words,
+we can use the following conventions on a Monad:</p>
+<pre><code>flatten : Monad&lt;Monad&lt;A&gt;&gt; → Monad&lt;A&gt;
+map : Monad&lt;A&gt; → Monad&lt;B&gt;
+flatMap : Monad&lt;A&gt; → Monad&lt;Monad&lt;B&gt;&gt; → Monad&lt;B&gt;
+</code></pre>
+<h2 id="composing-functions-vs-chaining-methods">Composing Functions VS Chaining Methods</h2>
+<p>We have now wrapped the return type for each step into a monad
+and this allows us to always pass the result to the next step.</p>
+<p>But how should we do it?
+We have two possible solutions for this.</p>
+<h4 id="composing-functions">Composing Functions</h4>
+<p>Firstly,
+we can have the functions receive and return monads:</p>
+<pre><code class="language-java">static Optional&lt;Wheat&gt; harvest() {
+    // ...
+}
+
+static Optional&lt;Flour&gt; mill(Optional&lt;Wheat&gt; wheat) {
+   // ...
+}
+
+static Optional&lt;Bread&gt; bake(Optional&lt;Flour&gt; flour) {
+   // ...
+}
+</code></pre>
+<p>This will allow us to compose the functions in a functional programming style:</p>
+<pre><code class="language-java">Optional&lt;Bread&gt; bread = bake( mill( harvest() ) );
+</code></pre>
+<p>If we read this from right to left, we can see that we're:
+- harvesting the wheat
+- milling the wheat into flour
+- baking the flour into bread</p>
+<p>In some languages, like Clojure, we can even use <a href="https://blog.etrandafir.com/blog/clojure-threading/">threading macros</a>
+to make this composition more elegant, 
+and easily read from top to bottom:</p>
+<pre><code class="language-clojure">(-&gt; (harvest)
+    (mill)
+    (bake))
+</code></pre>
+<h4 id="chaining-methods">Chaining Methods</h4>
+<p>Java is an O.O.P. language,
+the <em>Optional</em> object itself exposes the <em>map()</em> and <em>flatMap()</em> methods - <strong>they aren't static!</strong>
+This means there is no need to pass an <em>Optional</em> object as a parameter.
+Instead, we should chain method calls instead of composing functions,
+using <em>Optional's</em> <em>map()</em> and <em>flatMap()</em>:</p>
+<pre><code class="language-java">Optional&lt;Bread&gt; oopBread = harvest()
+  .flatMap(wheat -&gt; mill(wheat))
+  .flatMap(flour -&gt; bake(flour));
+</code></pre>
+<p>Or using method references:</p>
+<pre><code class="language-java">Optional&lt;Bread&gt; oopBread = harvest()
+  .flatMap(this::mill)
+  .flatMap(this::bake);
+</code></pre>
+<hr />
+<p><em>This article was inspired by César Tron-Lozai's talk at DEVOX.</em></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/e6tWJD5q8uw?si=LDNQvs6rsj2RHxZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+    </article>
+</section>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>
