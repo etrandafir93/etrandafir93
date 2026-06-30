@@ -25,6 +25,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
   <button class="tag-chip" onclick="showArticles('kafka')">#kafka (1)</button>
   <button class="tag-chip" onclick="showArticles('oop')">#oop (1)</button>
   <button class="tag-chip" onclick="showArticles('books')">#books (1)</button>
+  <button class="tag-chip" onclick="showArticles('tools')">#tools (1)</button>
 </div>
 
 <div id="design-articles" class="articles-container">
@@ -86,6 +87,12 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 <div id="books-articles" class="articles-container">
   <ul>
     <li><a href="blog/tidy-first-commitments/">'Tidy First?' and my Post-Reading Commitments</a></li>
+  </ul>
+</div>
+
+<div id="tools-articles" class="articles-container">
+  <ul>
+    <li><a href="blog/postfix-completion-templates/">Configure IntelliJ's Postfix Completion Templates</a></li>
   </ul>
 </div>
 

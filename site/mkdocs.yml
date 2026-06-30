@@ -30,3 +30,4 @@ nav:
   - "Lombok's \"Lazy\" Magic and the O.O.P. Alternative": blog/lombok-lazy-oop.md
   - "Uncle Bob's Advice on Stability and Abstractions": blog/clean-code-dependency-principles.md
   - "Why Optional<> is a Monad and Why the f() Should I Care?": blog/why-optional-is-a-monad.md
+  - "IntelliJ's Postfix Completion Templates": blog/postfix-completion-templates.md
