@@ -42,6 +42,6 @@ Now, we can simply use `.that` on any object or reference
 to quickly wrap it within an _AssertJ_ assertion:
 
 <div style="text-align: center;">
-  <img src="../img/idea_postfix_tempalte.gif" alt="IntelliJ Postfix Completion in Action" width="600">
+  <img src="https://raw.githubusercontent.com/etrandafir93/etrandafir93/refs/heads/main/site/docs/img/idea_postfix_tempalte.gif" alt="IntelliJ Postfix Completion in Action" width="600">
 </div>
 
