@@ -17,8 +17,8 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 <p style="padding-top: 30px;">Browse articles by topic:</p>
 
 <div class="tag-container">
-  <button class="tag-chip" onclick="showArticles('design')">#design (7)</button>
-  <button class="tag-chip" onclick="showArticles('testing')">#testing (4)</button>
+  <button class="tag-chip" onclick="showArticles('design')">#design (8)</button>
+  <button class="tag-chip" onclick="showArticles('testing')">#testing (5)</button>
   <button class="tag-chip" onclick="showArticles('functional-programming')">#functional programming (4)</button>
   <button class="tag-chip" onclick="showArticles('debugging')">#debugging (2)</button>
   <button class="tag-chip" onclick="showArticles('oss')">#oss (2)</button>
@@ -30,6 +30,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="design-articles" class="articles-container">
   <ul>
+    <li><a href="blog/property-based-testing/">Property Based Testing</a></li>
     <li><a href="blog/unleash-junit5-bdd/">From Parameterized Tests to BDD Specifications</a></li>
     <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>
     <li><a href="blog/clean-code-dependency-principles/">Uncle Bob's Advice on Stability and Abstractions</a></li>
@@ -70,6 +71,7 @@ I also value **communication and collaboration** and enjoy sharing my knowledge 
 
 <div id="testing-articles" class="articles-container">
   <ul>
+    <li><a href="blog/property-based-testing/">Property Based Testing</a></li>
     <li><a href="blog/unleash-junit5-bdd/">From Parameterized Tests to BDD Specifications</a></li>
     <li><a href="blog/micrometer-assertions-contribution/">My First Contribution to Micrometer</a></li>
     <li><a href="blog/avro-duplicate-class-mystery/">The Case of the Vanishing Schema Field</a></li>

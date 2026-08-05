@@ -14,7 +14,11 @@
       "WebFetch(domain:github.com)",
       "Bash(gh pr diff:*)",
       "WebFetch(domain:sembr.org)",
-      "WebFetch(domain:medium.com)"
+      "WebFetch(domain:medium.com)",
+      "Bash(git -C D:/repos/etrandafir93 status)",
+      "Bash(git -C D:/repos/etrandafir93 diff)",
+      "Bash(git -C D:/repos/etrandafir93 add site/overrides/main.html site/docs/robots.txt)",
+      "Bash(git -C D:/repos/etrandafir93 commit -m ' *)"
     ],
     "deny": [],
     "ask": []
