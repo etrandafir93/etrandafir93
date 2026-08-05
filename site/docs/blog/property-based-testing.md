@@ -99,7 +99,7 @@ As we can see, with this approach **the interesting part
 is the actual rule we want test,
 not the input-output pairs**:
 
-`Property: Calling _next()_ followed by _prev()_ should return the presentation to its original state.`
+`Property: Calling next() followed by prev() should return the presentation to its original state.`
 
 ### Jqwik
 
@@ -171,7 +171,7 @@ var parsedPresentation = fromPowerPoint(ppt);
 assertEquals(initialPresentation, parsedPresentation);
 ```
 
-`Property: fromPowerPoint(toPowerPoint(x)) == x`
+`Property: A presentation exported and then imported should be identical to the original.`
 
 This is sometimes called a round-trip property.
 
@@ -248,9 +248,9 @@ that should always hold true.
 
 Instead of asking:
 
-> What should happen for this particular input?
+_What should happen for this particular input?_
 
 we start asking:
 
-> What should always be true?
+_What properties of this component should always be true?_
 
