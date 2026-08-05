@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+        <title>Property Based Testing - Emanuel Trandafir</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link rel="canonical" href="https://blog.etrandafir.com/blog/property-based-testing/">
+        <meta name="author" content="Emanuel Trandafir">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+            <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../img/me.jpeg">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../img/me.jpeg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Emanuel Trandafir</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    --- About Me ---
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="./"
+                    class=" active 
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Property Based Testing
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../unleash-junit5-bdd/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    From Parameterized Tests to BDD Specifications
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../micrometer-assertions-contribution/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    My First Contribution to Micrometer
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../circular-initialization-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Sometimes-Null Constant
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../avro-duplicate-class-mystery/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    The Case of the Vanishing Schema Field
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../tidy-first-commitments/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    'Tidy First?' and my Post-Reading Commitments
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clojure-threading/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Clojure Threading for Dummy Java Devs (such as myself)
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../less-mocks-more-functions/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Less Mocks, More Functions!
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../java-optional-vs-kotlin/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Java's Optional vs Kotlin: Side by Side
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../lombok-lazy-oop/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Lombok's "Lazy" Magic and the O.O.P. Alternative
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../clean-code-dependency-principles/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Uncle Bob's Advice on Stability and Abstractions
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../why-optional-is-a-monad/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Why Optional<> is a Monad and Why the f() Should I Care?
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../postfix-completion-templates/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    IntelliJ's Postfix Completion Templates
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../.."
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../unleash-junit5-bdd/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                            
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+  
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="property-based-testing">Property Based Testing</h1>
+<p><em>Published: August 5, 2026</em></p>
+<p><a href="/#testing"><code>#testing</code></a> <a href="/#design"><code>#design</code></a></p>
+<p>Property Based Testing (PBT) is all about verifying facts about our code
+that should always hold true for valid inputs.</p>
+<h3 id="example-based-testing">Example-Based Testing</h3>
+<p>Compared to classical unit testing,
+<strong>it focuses on these properties (also called facts or invariants)
+rather than specific input → expected output pairs</strong>.</p>
+<p>Suppose we have a clicker,
+one of those devices that lets us move through slides while presenting a PowerPoint.</p>
+<p>If we model this domain in Java and write a test for it,
+it'll usually look something like this:</p>
+<pre><code class="language-java">@Test
+void test() {
+  // given
+  var clicker = new Clicker();
+  var presentation = new Presentation(&quot;My Dummy Talk&quot;, 15);
+  presentation.setCurrentSlide(11);
+
+  // when
+  clicker.next(presentation);
+
+  // then
+  assertEquals(12, presentation.getCurrentSlide());
+}
+</code></pre>
+<p>These are the most common tests you'll find in codebases. 
+In PBT terms, this is an example-based test 
+because it only verifies the behaviour for a single input.</p>
+<p>Even though our test looks correct and passes,
+<strong>it <em>may</em> be lying to us!</strong></p>
+<p>It tells us that the clicker's <em>next()</em> method works fine,
+but it only verifies that it does for a very specific context:
+a presentation named <em>"My Dummy Talk"</em>,
+which is 15 slides long,
+starting from slide 11.</p>
+<p>Will it work for a presentation with 100 slides?
+A single slide?
+What if we start on the first or last slide?</p>
+<p><em>We don't know.</em></p>
+<h3 id="property-based-testing_1">Property-Based Testing</h3>
+<p>Furthermore, the mental model required by the test 
+is quite far from our natural thinking process:
+When I'm on stage,
+I usually verify the clicker by clicking forward,
+then backward,
+and then checking that I landed back on the initial slide.</p>
+<p>This verification should work regardless of the presentation name or its length.
+Therefore,
+the presentation name,
+the number of slides,
+and the initial slide can be generated automatically
+from a large set of valid values.</p>
+<p>But, can we apply this reasoning to our test?</p>
+<pre><code class="language-java">@RepeatedTest(100)
+void test_pbt() {
+  // given
+  int noOfSlides = anyInt(1, 100);
+  int initialSlide = anyInt(1, noOfSlides - 1);
+
+  var clicker = new Clicker();
+  var presentation = new Presentation(anyString(), noOfSlides);
+  presentation.setCurrentSlide(initialSlide);
+
+  // when
+  clicker.next(presentation);
+  clicker.prev(presentation);
+
+  // then
+  assertEquals(initialSlide, presentation.getCurrentSlide());
+}
+</code></pre>
+<p>As we can see, with this approach <strong>the interesting part 
+is the actual rule we want test,
+not the input-output pairs</strong>:</p>
+<p><code>Property: Calling next() followed by prev() should return the presentation to its original state.</code></p>
+<h3 id="jqwik">Jqwik</h3>
+<p>As we can see,
+the test is executed many times with different inputs,
+and the invariant should hold true every single time.</p>
+<p>In this simplistic example,
+we use JUnit's <em>@RepeatedTest</em> feature.
+For each of these 100 runs,
+the test executes with different valid inputs.</p>
+<p>If we want to get a bit fancier,
+we can inject these values into the test as parameters.
+This can be achieved using <em>@ParameterizedTest</em> and a <em>@MethodSource</em>,
+or even better,
+using a dedicated Property Based Testing library,
+which provides many other useful features.</p>
+<p>Here's the same example written using <a href="https://jqwik.net/">jqwik</a>:</p>
+<pre><code class="language-java">@Property
+void next_prev(
+    @ForAll String title,
+    @ForAll @IntRange(min = 1, max = 100) int noOfSlides,
+    @ForAll @IntRange(min = 1, max = 100) int initialSlide
+) {
+    Assume.that(initialSlide &lt; noOfSlides);
+
+    var clicker = new Clicker();
+    var presentation = new Presentation(title, noOfSlides);
+    presentation.setCurrentSlide(initialSlide);
+
+    clicker.next(presentation);
+    clicker.prev(presentation);
+
+    assertEquals(initialSlide, presentation.getCurrentSlide());
+}
+</code></pre>
+<p>Beyond generating inputs,
+<em>jqwik</em> offers a number of features that make it a powerful PBT framework:</p>
+<ul>
+<li><strong>Shrinking</strong> — when a property fails, it automatically finds the smallest input that reproduces the failure</li>
+<li><strong>Stateful testing</strong> — model sequences of actions and verify invariants hold across state transitions</li>
+<li><strong>Custom arbitraries</strong> — define your own generators for domain objects using a composable API</li>
+<li><strong>Assume / filtering</strong> — skip inputs that don't satisfy preconditions, as shown above with <em>Assume.that()</em></li>
+<li><strong>Statistics</strong> — collect and assert the distribution of generated values, to make sure the input space is explored as expected</li>
+</ul>
+<h2 id="other-properties">Other Properties</h2>
+<h3 id="round-trip">Round-Trip</h3>
+<p>Any pair of inverse operations is a natural fit: serialize/deserialize, encode/decode, import/export.</p>
+<p>Let's assume we want to test methods that convert a <em>Presentation</em> object
+to a PowerPoint file,
+and back:</p>
+<pre><code class="language-java">var initialPresentation =
+    new Presentation(anyString(), anyInt(1, 100));
+initialPresentation.setContent(anyContent());
+
+var ppt = toPowerPoint(initialPresentation);
+var parsedPresentation = fromPowerPoint(ppt);
+
+assertEquals(initialPresentation, parsedPresentation);
+</code></pre>
+<p><code>Property: A presentation exported and then imported should be identical to the original.</code></p>
+<p>This is sometimes called a round-trip property.</p>
+<h3 id="idempotence">Idempotence</h3>
+<p>An idempotent function satisfies <code>f(f(x)) == f(x)</code> —
+applying it more than once has no additional effect.</p>
+<p>This shows up naturally in messaging systems,
+where consumers are often required to handle duplicate messages gracefully:</p>
+<pre><code class="language-java">var message = anyOrderCreatedEvent();
+
+publish(message);
+publish(message);
+publish(message);
+
+assertEventually(() -&gt;
+    processedCount(message.id()) == 1);
+</code></pre>
+<p><code>Property: Duplicate messages should not create duplicate side effects.</code></p>
+<p>The same applies to REST endpoints that must be safe to call more than once.</p>
+<h3 id="error-handling">Error Handling</h3>
+<p>Another class of properties is about robustness —
+how does the system behave when given invalid input?</p>
+<p>For messaging,
+we can publish a malformed message (a poison pill) to every topic the app consumes from
+and verify it ends up in the correct dead-letter destination:</p>
+<pre><code class="language-java">for (String topic : allConsumerTopics()) {
+  publish(topic, anyMalformedMessage());
+  assertEventually(
+    () -&gt; messageExists(topic + &quot;.retry-1&quot;));
+  assertEventually(
+    () -&gt; messageExists(topic + &quot;.dlt&quot;));
+}
+</code></pre>
+<p><code>Property: Invalid messages should not block the listener.</code></p>
+<p>For REST APIs,
+invalid requests should produce client errors,
+not server errors:</p>
+<pre><code class="language-java">var response = callApi(anyInvalidRequest());
+
+assertThat(response.statusCode())
+  .is4xxClientError();
+</code></pre>
+<p><code>Property: Invalid input should result in a 4xx response, not a 5xx response.</code></p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>Property Based Testing does not replace traditional unit testing.</p>
+<p>Example-based tests are still valuable because they document
+specific business rules and expected behaviour.</p>
+<p>Property Based Testing complements them
+by focusing on invariants and automatically exploring many different inputs.</p>
+<p>The biggest benefit of PBT is not that it generates lots of data.
+The real benefit is that it encourages us to think in terms of rules
+that should always hold true.</p>
+<p>Instead of asking:</p>
+<p><em>What should happen for this particular input?</em></p>
+<p>we start asking:</p>
+<p><em>What properties of this component should always be true?</em></p></p>
+    </article>
+</section>
+
+  <!-- ShareThis Buttons -->
+  <div style="margin-top: 2rem; padding: 1rem 7px;">
+    <div class="sop"></div>
+  </div>
+
+  <!-- Giscus Comments -->
+  <div class="giscus-comments" style="padding-bottom: 2rem; padding-left: 7px; padding-right: 7px;">
+    <script src="https://giscus.app/client.js"
+            data-repo="etrandafir93/etrandafir93"
+            data-repo-id="R_kgDOMA5rWQ"
+            data-category="General"
+            data-category-id="DIC_kwDOMA5rWc4C0Ujw"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="catppuccin_frappe"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="https://platform-api.sharethis.com/js/sharethis.js#property=69519501707ebdefb2a2468e&product=sop&source=platform" defer></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>
