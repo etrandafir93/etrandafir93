@@ -43,9 +43,6 @@ void test() {
 These are the most common tests you'll find in codebases, 
 and they are usually called "unit tests" or "example-based tests".
 
-
-### Property-Based Testing
-
 Even though our previous test looks correct and passes,
 it _may_ be lying to us.
 
@@ -58,9 +55,13 @@ starting from slide 11.
 Will it work for a presentation with 100 slides?
 A single slide?
 What if we start on the first or last slide?
+
 _We don't know._
 
-Furthermore, this is quite far from my natural thinking process.
+### Property-Based Testing
+
+Furthermore, the mental model of the test is quite far 
+from my natural thinking process.
 
 When I'm on stage,
 I usually verify the clicker by clicking forward,
@@ -74,8 +75,8 @@ the number of slides,
 and the initial slide can be generated automatically
 from a large set of valid values.
 
-Notice that **the interesting part is not the generated values themselves.
-The important part is the rule we're verifying**:
+In other words, **the interesting part is the actual rule we want test,
+not the input-output pairs**:
 
 ```java
 @RepeatedTest(100)
@@ -97,10 +98,7 @@ void test_pbt() {
 }
 ```
 
-**Property:**
-
-> Calling _next()_ followed by _prev()_ should return the presentation to its original state.
-
+`Property: Calling _next()_ followed by _prev()_ should return the presentation to its original state.`
 
 ### Jqwik
 
@@ -142,19 +140,7 @@ void forwardThenBackwardReturnsToTheSameSlide(
 }
 ```
 
-**Property:**
-
-> Calling _next()_ followed by _prev()_ should return the presentation to its original state.
-
-Notice how we no longer describe a specific scenario.
-Instead,
-we describe a rule that should always be true,
-and _jqwik_ generates many different inputs for us automatically.
-
-The value of a dedicated PBT library is not just that it generates inputs for us.
-It also knows how to shrink failing examples.
-
-## Other Properties
+### Other Properties
 
 Another place where PBT shines is with pairs of methods 
 that encode and decode data.
@@ -173,9 +159,7 @@ var parsedPresentation = fromPowerPoint(ppt);
 assertEquals(initialPresentation, parsedPresentation);
 ```
 
-**Property:**
-
-> Importing a presentation after exporting it should produce an equivalent presentation.
+`Property: Importing a presentation after exporting it should produce an equivalent presentation.`
 
 Or, expressed mathematically:
 
@@ -185,7 +169,7 @@ fromPowerPoint(toPowerPoint(x)) == x
 
 This is sometimes called a round-trip property.
 
-## Idempotence
+### Idempotence
 
 Another interesting application of PBT is verifying idempotence.
 
@@ -217,9 +201,7 @@ assertEquals(date1, date2);
 assertEquals(date2, date3);
 ```
 
-**Property:**
-
-> Once a date is eligible, making it eligible again should not change it.
+`Property: Applying the function to an already-eligible date should return the same date.`
 
 Until now we've used helper methods such as _anyDate()_ and _anyInt()_
 to illustrate generated inputs.
@@ -238,15 +220,28 @@ Libraries will also generate special values and edge cases such as:
 
 When was the last time you tested your code using the 29th of February of a leap year? 😄
 
-### Technical Properties
 
-In real projects,
-I've used PBT in a variety of ways.
+### Idempotent Consumers
 
-Besides verifying domain rules,
-I've also used it to verify more technical and operational properties.
+For message-driven systems,
+a common requirement is that processing the same message multiple times
+produces the same result as processing it once.
 
-#### Poison-Pill Message Handling
+```java
+var message = anyOrderCreatedEvent();
+
+publish(message);
+publish(message);
+publish(message);
+
+assertEventually(() ->
+    processedCount(message.id()) == 1);
+```
+
+`Property: Duplicate messages should not create duplicate side effects.`
+
+
+### Poison-Pill Message Handling
 
 We scan the application for all queues and topics we consume from.
 
@@ -268,30 +263,7 @@ for (String topic : allConsumerTopics()) {
 }
 ```
 
-**Property:**
-
-> Invalid messages should not block the listener.
-
-### Idempotent Consumers
-
-For message-driven systems,
-a common requirement is that processing the same message multiple times
-produces the same result as processing it once.
-
-```java
-var message = anyOrderCreatedEvent();
-
-publish(message);
-publish(message);
-publish(message);
-
-assertEventually(() ->
-    processedCount(message.id()) == 1);
-```
-
-**Property:**
-
-> Duplicate messages should not create duplicate side effects.
+`Property: Invalid messages should not block the listener.`
 
 ### REST Error Handling
 
@@ -307,9 +279,7 @@ assertThat(response.statusCode())
     .is4xxClientError();
 ```
 
-**Property:**
-
-> Invalid input should result in a 4xx response, not a 5xx response.
+`Property: Invalid input should result in a 4xx response, not a 5xx response.`
 
 This can uncover surprising edge cases that traditional example-based tests often miss.
 
