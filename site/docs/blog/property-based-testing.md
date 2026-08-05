@@ -40,11 +40,12 @@ void test() {
 }
 ```
 
-These are the most common tests you'll find in codebases, 
-and they are usually called "unit tests" or "example-based tests".
+These are the most common tests you'll find in codebases. 
+In PBT terms, this is an example-based test 
+because it only verifies the behaviour for a single input.
 
-Even though our previous test looks correct and passes,
-it _may_ be lying to us.
+Even though our test looks correct and passes,
+**it _may_ be lying to us!**
 
 It tells us that the clicker's _next()_ method works fine,
 but it only verifies that it does for a very specific context:
@@ -60,9 +61,8 @@ _We don't know._
 
 ### Property-Based Testing
 
-Furthermore, the mental model of the test is quite far 
-from my natural thinking process.
-
+Furthermore, the mental model required by the test 
+is quite far from our natural thinking process:
 When I'm on stage,
 I usually verify the clicker by clicking forward,
 then backward,
@@ -75,9 +75,7 @@ the number of slides,
 and the initial slide can be generated automatically
 from a large set of valid values.
 
-In other words, **the interesting part is the actual rule we want test,
-not the input-output pairs**:
-
+But, can we apply this reasoning to our test?
 ```java
 @RepeatedTest(100)
 void test_pbt() {
@@ -97,6 +95,9 @@ void test_pbt() {
   assertEquals(initialSlide, presentation.getCurrentSlide());
 }
 ```
+As we can see, with this approach **the interesting part 
+is the actual rule we want test,
+not the input-output pairs**:
 
 `Property: Calling _next()_ followed by _prev()_ should return the presentation to its original state.`
 
@@ -122,7 +123,7 @@ Here's the same example written using [jqwik](https://jqwik.net/):
 
 ```java
 @Property
-void forwardThenBackwardReturnsToTheSameSlide(
+void next_prev(
     @ForAll String title,
     @ForAll @IntRange(min = 1, max = 100) int noOfSlides,
     @ForAll @IntRange(min = 1, max = 100) int initialSlide
@@ -140,13 +141,24 @@ void forwardThenBackwardReturnsToTheSameSlide(
 }
 ```
 
-### Other Properties
+Beyond generating inputs,
+_jqwik_ offers a number of features that make it a powerful PBT framework:
 
-Another place where PBT shines is with pairs of methods 
-that encode and decode data.
+- **Shrinking** — when a property fails, it automatically finds the smallest input that reproduces the failure
+- **Stateful testing** — model sequences of actions and verify invariants hold across state transitions
+- **Custom arbitraries** — define your own generators for domain objects using a composable API
+- **Assume / filtering** — skip inputs that don't satisfy preconditions, as shown above with _Assume.that()_
+- **Statistics** — collect and assert the distribution of generated values, to make sure the input space is explored as expected
 
-Let's assume we want to test methods that convert a _Presentation_ object 
-to a PowerPoint file, and back:
+## Other Properties
+
+### Round-Trip
+
+Any pair of inverse operations is a natural fit: serialize/deserialize, encode/decode, import/export.
+
+Let's assume we want to test methods that convert a _Presentation_ object
+to a PowerPoint file,
+and back:
 
 ```java
 var initialPresentation =
@@ -159,73 +171,17 @@ var parsedPresentation = fromPowerPoint(ppt);
 assertEquals(initialPresentation, parsedPresentation);
 ```
 
-`Property: Importing a presentation after exporting it should produce an equivalent presentation.`
-
-Or, expressed mathematically:
-
-```java
-fromPowerPoint(toPowerPoint(x)) == x
-```
+`Property: fromPowerPoint(toPowerPoint(x)) == x`
 
 This is sometimes called a round-trip property.
 
 ### Idempotence
 
-Another interesting application of PBT is verifying idempotence.
+An idempotent function satisfies `f(f(x)) == f(x)` —
+applying it more than once has no additional effect.
 
-In mathematical terms,
-an idempotent function satisfies:
-
-```text
-f(x) = f(f(x))
-```
-
-Imagine we have a function that receives a date
-and returns the first eligible date for placing an order:
-
-```java
-LocalDate firstEligibleDateForOrder(LocalDate from) {
-    // ...
-}
-```
-
-Since _firstEligibleDateForOrder()_ already returns an eligible date,
-calling it again should have no effect.
-
-```java
-var date1 = firstEligibleDateForOrder(anyDate());
-var date2 = firstEligibleDateForOrder(date1);
-var date3 = firstEligibleDateForOrder(date2);
-
-assertEquals(date1, date2);
-assertEquals(date2, date3);
-```
-
-`Property: Applying the function to an already-eligible date should return the same date.`
-
-Until now we've used helper methods such as _anyDate()_ and _anyInt()_
-to illustrate generated inputs.
-A dedicated PBT library such as _jqwik_ provides much more powerful generators.
-
-For dates,
-we're not only talking about every day of the week.
-Libraries will also generate special values and edge cases such as:
-
-- dates very far in the past
-- dates very far in the future
-- 1st of January
-- 31st of December
-- leap years
-- month boundaries
-
-When was the last time you tested your code using the 29th of February of a leap year? 😄
-
-
-### Idempotent Consumers
-
-For message-driven systems,
-a common requirement is that processing the same message multiple times
-produces the same result as processing it once.
+This shows up naturally in messaging systems,
+where consumers are often required to handle duplicate messages gracefully:
 
 ```java
 var message = anyOrderCreatedEvent();
@@ -240,48 +196,41 @@ assertEventually(() ->
 
 `Property: Duplicate messages should not create duplicate side effects.`
 
+The same applies to REST endpoints that must be safe to call more than once.
 
-### Poison-Pill Message Handling
+### Error Handling
 
-We scan the application for all queues and topics we consume from.
+Another class of properties is about robustness —
+how does the system behave when given invalid input?
 
-For each destination,
-we publish a malformed message (a poison pill).
-The property we're interested in is that the message
-eventually reaches the correct retry and dead-letter topics.
+For messaging,
+we can publish a malformed message (a poison pill) to every topic the app consumes from
+and verify it ends up in the correct dead-letter destination:
 
 ```java
 for (String topic : allConsumerTopics()) {
-
-    publish(topic, anyMalformedMessage());
-
-    assertEventually(() ->
-        messageExists(topic + ".retry_100"));
-
-    assertEventually(() ->
-        messageExists(topic + ".dlt"));
+  publish(topic, anyMalformedMessage());
+  assertEventually(
+    () -> messageExists(topic + ".retry-1"));
+  assertEventually(
+    () -> messageExists(topic + ".dlt"));
 }
 ```
 
 `Property: Invalid messages should not block the listener.`
 
-### REST Error Handling
-
-Another useful property is verifying that invalid requests
-result in client errors rather than server errors.
+For REST APIs,
+invalid requests should produce client errors,
+not server errors:
 
 ```java
-var request = anyInvalidRequest();
-
-var response = callApi(request);
+var response = callApi(anyInvalidRequest());
 
 assertThat(response.statusCode())
-    .is4xxClientError();
+  .is4xxClientError();
 ```
 
 `Property: Invalid input should result in a 4xx response, not a 5xx response.`
-
-This can uncover surprising edge cases that traditional example-based tests often miss.
 
 ## Final Thoughts
 
