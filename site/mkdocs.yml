@@ -5,8 +5,8 @@ site_author: Emanuel Trandafir
 repo_url: https://github.com/etrandafir93
 theme:
   name: dracula
-  logo: img/me.jpeg
-  favicon: img/me.jpeg
+  logo: img/me_devoxx.png
+  favicon: img/me_devoxx.png
   custom_dir: overrides
 markdown_extensions:
   - attr_list
